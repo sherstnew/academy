@@ -1,0 +1,45 @@
+@keyframes scrollBtn {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100vw;
+  @media screen and (max-width: 500px) {
+    gap: 50px;
+  }
+}
+
+.scrollBlock {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scrollBtn {
+  position: absolute;
+  top: 80vh;
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  user-select: none;
+  filter: none;
+  transition: 1s;
+  &:hover {
+    transition: 1s;
+    animation: scrollBtn 1s infinite;
+    filter: drop-shadow(0px -10px 0px rgba(212, 66, 164, 0.2));
+  }
+}

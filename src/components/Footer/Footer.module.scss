@@ -1,0 +1,28 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 20vh;
+  margin-top: 50px;
+  flex: 0 0 auto;
+}
+
+.academy {
+  margin-left: 50px;
+  font-size: 20px;
+  color: #acacac;
+}
+
+.social {
+  margin-right: 50px;
+  width: 10%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  &>img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+}
