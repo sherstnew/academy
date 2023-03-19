@@ -6,12 +6,17 @@
   height: 20vh;
   margin-top: 50px;
   flex: 0 0 auto;
+  font-size: 20px;
+  color: #acacac;
 }
 
 .academy {
   margin-left: 50px;
-  font-size: 20px;
-  color: #acacac;
+}
+
+.login {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .social {

@@ -8,6 +8,9 @@ export const Footer = () => {
       <div className={styles.academy}>
         Академия
       </div>
+      <a href='/login' className={styles.login}>
+        Войти
+      </a>
       <div className={styles.social}>
         <img src={vk} alt="vk" />
         <img src={inst} alt="inst" />

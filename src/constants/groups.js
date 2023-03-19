@@ -20,7 +20,7 @@ export const groups = [
     id: '3',
     name: 'Старшая группа (юноши)',
     about: 'В юношеской старшей группе тренируются парни 2006-2008 года рождения. Здесь тренируется юношеская команда Академии.',
-    cost: 'Беслатно',
+    cost: 'Бесплатно',
     places_avaliable: 'F',
     img: 'https://icecube-eu-408.icedrive.io/download?p=QccO59Fal3ZxkR_keqUcg3jAlxDNsEBcvW42Kbt_j5Sk_4mItRiQXT6FDflfkcIeY5E7MfUTzxWdQn9kVqd4wSkVEc5CazQPLJTfaIqn5aCvkx2ZLLaLON9oepGpmETw1HxkSOVhb3TZ1U_ouZx__pigMxR38DOOCov0.IgG6Nvm9pfTzXqRRKmtc13tindixhBiT2Vh5plhIsJAyPBE1Q--',
   }
