@@ -6,6 +6,7 @@ import { TeamPage } from './pages/TeamPage/TeamPage';
 import { AwardsPage } from './pages/AwardsPage/AwardsPage';
 import { LoginPage } from './pages/LoginPage/LoginPage';
 import { LkPage } from './pages/LkPage/LkPage';
+import { AdminTeamPage } from './pages/AdminTeamPage/AdminTeamPage';
 
 export const App = () => {
   return (
@@ -17,6 +18,7 @@ export const App = () => {
         <Route path='/awards' element={<AwardsPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/lk' element={<LkPage />} />
+        <Route path='/lk/team' element={<AdminTeamPage />} />
       </Routes>
     </BrowserRouter>
   );

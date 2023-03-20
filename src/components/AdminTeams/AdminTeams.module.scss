@@ -1,0 +1,14 @@
+.teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.teams__title {
+  width: 100%;
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}

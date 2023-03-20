@@ -1,0 +1,32 @@
+.players__menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.players__title {
+  width: 20%;
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.players__search {
+  font-family: 'Manrope', sans-serif;
+  padding-left: 15px;
+  font-size: 16px;
+  width: 300px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  outline: #8b8b8b 1px solid;
+  transition: 0.5s;
+  &:focus-visible {
+    transition: 0.5s;
+    outline: #000000 1px solid;
+  }
+  &::placeholder {
+    font-size: 16px;
+  }
+}
