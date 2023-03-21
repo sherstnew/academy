@@ -1,8 +1,8 @@
 import { ACADEMYCONFIG } from '../academy.config';
 
-export function getPlayers() {
+export function getPlayers(id) {
   return new Promise((resolve, reject) => {
-    fetch(`${ACADEMYCONFIG.HOST}/api/players`, {
+    fetch(`${ACADEMYCONFIG.HOST}/api/players${id ? `?id=${id}` : ''}`, {
         method: 'GET',
         headers: {
           "content-type": "application/json",
