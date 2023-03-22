@@ -29,14 +29,14 @@ export const AdminPlayer = ({player}) => {
           .then(res => {
             if (res.status === 'ok') {
               setStatus('success');
-              window.location.reload();
+              window.location.href = '/lk';
             } else {
               setStatus('error')
             }
           })
     }
     return (
-        status === 'success' ? 
+        status === 'success' ?
         <div className={styles.player}>
             <div className={styles.player__title}>
                 {
@@ -44,7 +44,7 @@ export const AdminPlayer = ({player}) => {
                 }
             </div>
             <div className={styles.player__picture}>
-                <img src={player.image} alt="картинка игрока" className={styles.player__image} />
+                <img src={img} alt="картинка игрока" className={styles.player__image} />
                 <div className={styles.label}>Введите ссылку на картинку:</div>
                 <input className={styles.input} placeholder="Введите ссылку" value={img} onChange={evt => setImg(evt.target.value)} />
             </div>
@@ -68,7 +68,9 @@ export const AdminPlayer = ({player}) => {
                 <UIButton>Сохранить</UIButton>
             </div>
         </div>
-        : 
+        :
+        status === 'error' ? <div className={styles.error}>Произошла ошибка, проверьте введенные данные или обратитесь к администратору.</div>
+        :
         <Loader />
     )
 }
