@@ -1,17 +1,44 @@
 import styles from './AdminPlayer.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader } from '../Loader/Loader';
 import { ACADEMYCONFIG } from '../../academy.config';
 import { UIButton } from '../UIButton/UIButton';
+import { ModalWindow } from '../ModalWindow/ModalWindow';
+import deleteIcon from '../../static/icons/delete.svg';
+import { animateScroll } from 'react-scroll';
 
 export const AdminPlayer = ({player}) => {
+    const [deleteStatus, setDeleteStatus] = useState('normal');
     const [img, setImg] = useState(player.image);
     const [name, setName] = useState(player.name);
     const [birth, setBirth] = useState(player.birth);
     const [height, setHeight] = useState(player.height);
     const [position, setPosition] = useState(player.position);
     const [status, setStatus] = useState('success');
+    useEffect(() => {
+        animateScroll.scrollToTop({duration: 0});
+    }, []);
+    const deletePlayer = () => {
+        setStatus('pending');
+        fetch(`${ACADEMYCONFIG.HOST}/api/players?id=${player.id}`, {
+            method: 'DELETE',
+            headers: {
+                "content-type": "application/json",
+                "cache-control": "no-cache"
+            },
+        }).then(data => data.json())
+        .then(res => {
+            if (res.status === 'ok') {
+                window.location.href = '/lk';
+                setStatus('success');
+            } else {
+                setStatus('error');
+            }
+        })
+    };
+
     const submitInfo = () => {
+        setStatus('pending');
         const data = player;
         data.image = img;
         data.name = name;
@@ -34,14 +61,15 @@ export const AdminPlayer = ({player}) => {
               setStatus('error')
             }
           })
-    }
+    };
+
     return (
         status === 'success' ?
+        <>
         <div className={styles.player}>
             <div className={styles.player__title}>
-                {
-                    player.name
-                }
+                <div className={styles.title__name}>{ player.name }</div>
+                <img src={deleteIcon} alt="удалить игрока" className={styles.title__delete} onClick={() => setDeleteStatus('request')} />
             </div>
             <div className={styles.player__picture}>
                 <img src={img} alt="картинка игрока" className={styles.player__image} />
@@ -68,6 +96,10 @@ export const AdminPlayer = ({player}) => {
                 <UIButton>Сохранить</UIButton>
             </div>
         </div>
+        {
+            deleteStatus === 'request' ? <ModalWindow window={{title: 'Вы точно хотите удалить игрока?', about: 'Это действие невозможно отменить'}} confirm={() => deletePlayer()} decline={() => setDeleteStatus('normal')} /> : ''
+        }
+        </>
         :
         status === 'error' ? <div className={styles.error}>Произошла ошибка, проверьте введенные данные или обратитесь к администратору.</div>
         :
