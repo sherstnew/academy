@@ -6,6 +6,7 @@ import { UIButton } from '../UIButton/UIButton';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import deleteIcon from '../../static/icons/delete.svg';
 import { animateScroll } from 'react-scroll';
+import { Error } from '../../components/Error/Error';
 
 export const AdminPlayer = ({player}) => {
     const [deleteStatus, setDeleteStatus] = useState('normal');
@@ -101,7 +102,7 @@ export const AdminPlayer = ({player}) => {
         }
         </>
         :
-        status === 'error' ? <div className={styles.error}>Произошла ошибка, проверьте введенные данные или обратитесь к администратору.</div>
+        status === 'error' ? <Error />
         :
         <Loader />
     )

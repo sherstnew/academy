@@ -6,10 +6,12 @@ import { Loader } from '../../components/Loader/Loader';
 import { AdminTeam } from '../../components/AdminTeam/AdminTeam';
 import styles from './AdminTeamPage.module.scss';
 import { ACADEMYCONFIG } from '../../academy.config';
+import { getPlayers } from '../../utils/getPlayers';
 
 export const AdminTeamPage = () => {
   const [team, setTeam] = useState({});
   const [status, setStatus] = useState('start');
+  const [allPlayers, setAllPlayers] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
     setStatus('pending');
@@ -22,7 +24,20 @@ export const AdminTeamPage = () => {
     }).then((res => res.json()))
     .then(data => {
       setTeam(data);
-      setStatus('success');
+      getPlayers()
+      .then(res => {
+        let currentTeamIds = []
+        data.players.forEach(pl => {
+          currentTeamIds.push(pl.id);
+        })
+        res = res.filter(p => !currentTeamIds.includes(p.id));
+        setAllPlayers(res);
+        setStatus('success');
+      })
+      .catch(err => {
+        console.log(err);
+        setStatus('error');
+      })
     })
   }, [])
   return (
@@ -30,7 +45,7 @@ export const AdminTeamPage = () => {
       <Header />
       <div className={styles.container}>
         {
-          status === 'success' ? <AdminTeam team={team} /> : <Loader />
+          status === 'success' ? <AdminTeam team={team} allPlayers={allPlayers} /> : <Loader />
         }
       </div>
       <Footer />

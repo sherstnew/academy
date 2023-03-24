@@ -11,7 +11,7 @@ import minus from '../../static/icons/minus.svg';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
-export const AdminTeam = ({team}) => {
+export const AdminTeam = ({team, allPlayers}) => {
   const [addStatus, setAddStatus] = useState({status: 'normal', id: ''});
   const [deleteStatus, setDeleteStatus] = useState({status: 'normal', ids: []});
   const [currentTeam, setCurrentTeam] = useState(team);
@@ -19,27 +19,9 @@ export const AdminTeam = ({team}) => {
   const [name, setName] = useState(team.name);
   const [about, setAbout] = useState(team.about);
   const [players, setPlayers] = useState(team.players);
-  const [allPlayers, setAllPlayers] = useState([]);
+  const [otherPlayers, setOtherPlayers] = useState(allPlayers);
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [status, setStatus] = useState('success');
-
-  useEffect(() => {
-    setStatus('pending');
-    getPlayers()
-    .then(res => {
-      let currentTeamIds = []
-      players.forEach(pl => {
-        currentTeamIds.push(pl.id);
-      })
-      res = res.filter(p => !currentTeamIds.includes(p.id));
-      setAllPlayers(res);
-      setSelectedPlayers([]);
-      setStatus('success');
-    })
-    .catch(err => {
-      setStatus('error');
-    })
-  }, [])
 
   const addPlayers = () => {
     const new_players = [...players, ...selectedPlayers];
@@ -128,7 +110,7 @@ export const AdminTeam = ({team}) => {
         </div>
       </div>
       <div className={styles.team__submit}>
-        <div onClick={() => submitInfo()}>
+        <div onClick={() => submitInfo(players)}>
           <UIButton>Сохранить</UIButton>
         </div>
       </div>
@@ -140,9 +122,10 @@ export const AdminTeam = ({team}) => {
         <div className={styles.modal}>
           <div className={styles.modal__window}>
             <div className={styles.window__title}>Добавить игрока</div>
+            <input type="text" className={styles.window__search} placeholder='Поиск по игрокам...' onChange={evt => setOtherPlayers(allPlayers.filter(pl => pl.name.toLowerCase().includes(evt.target.value.toLowerCase())))} />
             <div className={styles.window__players}>
               {
-                allPlayers.map(player =>
+                otherPlayers.map(player =>
                 <div key={player.id} onClick={evt => selectPlayer(player, evt)} className={cx({player: true, addPlayer: true})}>
                   <div className={styles.player__image} style={{backgroundImage: `url(${ player.image })`}}></div>
                   <div className={styles.player__name}>{ player.name }</div>
@@ -151,8 +134,8 @@ export const AdminTeam = ({team}) => {
               }
             </div>
             <div className={styles.window__choose}>
-              <div className={styles.choose__confirm} onClick={() => addPlayers()}>Подтвердить</div>
-              <div className={styles.choose__decline} onClick={() => setAddStatus('normal')}>Отклонить</div>
+              <div className={styles.choose__confirm} onClick={() => addPlayers()}>Добавить</div>
+              <div className={styles.choose__decline} onClick={() => setAddStatus('normal')}>Выйти</div>
             </div>
           </div>
         </div>

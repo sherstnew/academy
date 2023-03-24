@@ -1,0 +1,23 @@
+.error__wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  text-align: center;
+  width: 50%;
+  font-size: 20px;
+  a {
+    width: 100%;
+    color: #444444;
+    text-decoration: underline;
+    margin-top: 20px;
+  }
+}

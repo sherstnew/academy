@@ -10,7 +10,7 @@ import { ACADEMYCONFIG } from '../../academy.config';
 export const TeamBlock = () => {
   const [team, setTeam] = useState([]);
   const [status, setStatus] = useState('');
-  const [sort, setSort] = useState(1);
+  const [sort, setSort] = useState(2);
   let [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
     setStatus('pending');
@@ -41,6 +41,7 @@ export const TeamBlock = () => {
           <div className={styles.header__name}>Имя</div>
           <div className={styles.header__age} onClick={() => setSort(sort === 1 ? 2 : 1)}> Возраст <img className={styles.arrow} src={arrow} style={{transform: sort === 1 || sort === 2 ? sort === 1 ? 'rotate(180deg)' : 'rotate(0deg)' : 'rotate(90deg)' }} alt="стрелка" /></div>
           <div className={styles.header__height} onClick={() => setSort(sort === 3 ? 4 : 3)}> Рост <img className={styles.arrow} src={arrow} style={{transform: sort === 3 || sort === 4 ? sort === 3 ? 'rotate(180deg)' : 'rotate(0deg)' : 'rotate(90deg)' }} alt="стрелка" /></div>
+          <div className={styles.header__position}>Амплуа</div>
       </div>
         {
           sort === 1 ? arraySort(team.players, 'birth').reverse().map(player => <Player key={player.id} player={player} />) :

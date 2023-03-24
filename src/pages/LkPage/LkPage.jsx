@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { parse } from 'cookie';
 import { getSession } from '../../utils/getSession';
 import { getProfile } from '../../utils/getProfile';
+import { Error } from '../../components/Error/Error';
 
 export const LkPage = () => {
   const [adminInfo, setAdminInfo] = useState({});
@@ -24,18 +25,26 @@ export const LkPage = () => {
               setAdminInfo(profile);
               setStatus('success');
             } else {
+              document.cookie = 'ACADEMY_TOKEN=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
               setStatus('error');
+              window.location.href = '/login';
             }
           })
           .catch(() => {
+            document.cookie = 'ACADEMY_TOKEN=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
             setStatus('error');
+            window.location.href = '/login';
           })
         } else {
+          document.cookie = 'ACADEMY_TOKEN=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
           setStatus('error');
+          window.location.href = '/login';
         }
       })
       .catch(() => {
+        document.cookie = 'ACADEMY_TOKEN=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         setStatus('error');
+        window.location.href = '/login';
       })
     }
   }, [])
@@ -45,7 +54,7 @@ export const LkPage = () => {
       <div className={styles.container}>
       {
         status === 'success' ? <AdminBlock admin={adminInfo} /> :
-        status === 'error' ? 'Произошла ошибка, обратитесь к администратору.' : <Loader />
+        status === 'error' ? <Error errorText={'Произошла ошибка авторизации. Попробуйте войти заново.'} /> : <Loader />
       }
       </div>
       <Footer />

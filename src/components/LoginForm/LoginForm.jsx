@@ -16,18 +16,22 @@ export const LoginForm = () => {
   })
   const auth = () => {
     setStatus('pending');
-    fetch(`${ACADEMYCONFIG.HOST}/api/auth?username=${username}&password=${password}`, {
-      method: 'GET',
+    fetch(`${ACADEMYCONFIG.HOST}/api/auth`, {
+      method: 'POST',
       headers: {
         "content-type": "application/json",
         "cache-control": "no-cache",
       },
+      body: JSON.stringify({
+        username: username,
+        password: password
+      }),
       credentials: "include"
     }).then((res => res.json()))
     .then(data => {
-      if (data && data !== 'ERR_CRED') {
+      if (data.status === 'ok') {
         document.cookie = 'ACADEMY_TOKEN=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        document.cookie = 'ACADEMY_TOKEN=' + data;
+        document.cookie = 'ACADEMY_TOKEN=' + data.data;
         setStatus('success');
         window.location.href = '/lk';
       } else {

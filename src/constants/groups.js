@@ -1,3 +1,6 @@
+import g1 from '../static/images/group_1.webp';
+import g2 from '../static/images/group_2.webp';
+import g3 from '../static/images/group_3.webp';
 
 export const groups = [
   {
@@ -6,7 +9,7 @@ export const groups = [
     about: 'Младшая группа - прекрасный выбор для новичка. Здесь вы сможете получить базовые навыки игры в волейбол, которые необходимы для поступления в более старшие группы.',
     cost: 'Платно',
     places_avaliable: 'T',
-    img: 'https://i.ibb.co/xmft6r2/group-1.jpg',
+    img: g1,
   },
   {
     id: '2',
@@ -14,7 +17,7 @@ export const groups = [
     about: 'Старшая группа, сюда попадают игроки с уверенным уровнем волейбола. В этой группе тренируется женская команда Академии.',
     cost: 'Бесплатно',
     places_avaliable: 'F',
-    img: 'https://i.ibb.co/WP2KXpY/group-2.jpg',
+    img: g2,
   },
   {
     id: '3',
@@ -22,6 +25,6 @@ export const groups = [
     about: 'В юношеской старшей группе тренируются парни 2006-2008 года рождения. Здесь тренируется юношеская команда Академии.',
     cost: 'Бесплатно',
     places_avaliable: 'F',
-    img: 'https://i.ibb.co/dPCRhZc/group-3.jpg',
+    img: g3,
   }
 ]
