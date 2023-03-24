@@ -8,7 +8,7 @@ export const Error = ({errorText}) => {
         {
           errorText ? errorText : 'Произошла неизвестная ошибка, обратитесь к администратору.'
         }
-        <a href="https://t.me/sherstd" target="_blank" rel="noreferrer">Администратор</a>
+        <a href="https://t.me/sherstd" target="_blank" rel="noopener noreferrer">Администратор</a>
         <Link to='/'>Домой</Link>
       </div>
     </div>
