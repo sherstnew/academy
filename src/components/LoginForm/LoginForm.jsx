@@ -21,6 +21,7 @@ export const LoginForm = () => {
       headers: {
         "content-type": "application/json",
         "cache-control": "no-cache",
+        "academy_token": parse(document.cookie).ACADEMY_TOKEN,
       },
       body: JSON.stringify({
         username: username,
@@ -35,10 +36,12 @@ export const LoginForm = () => {
         setStatus('success');
         window.location.href = '/lk';
       } else {
+        console.log(data);
         setStatus('error');
       }
     })
     .catch(err => {
+      console.log(err);
       setStatus('error');
     })
   }
@@ -53,9 +56,7 @@ export const LoginForm = () => {
       <input type="password" className={styles.input} onChange={text => setPassword(text.target.value)} />
     </div>
     { status === 'error' ? <div className={styles.error}>Не удалось войти. Попробуйте ввести имя и пароль заново.</div> : ''}
-    <div onClick={(() => auth())}>
-      <UIButton>Войти</UIButton>
-    </div>
+    <UIButton onClick={(() => auth())}>Войти</UIButton>
   </div> : <Loader />
   )
 }

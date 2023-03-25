@@ -1,5 +1,4 @@
 import styles from './AdminPlayers.module.scss';
-import { Player } from '../Player/Player';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import plus from '../../static/icons/plus.svg';
@@ -21,7 +20,10 @@ export const AdminPlayers = ({players}) => {
       {
         filteredPlayers.map(player =>
           <Link to={`/lk/player?id=${player.id}`} key={player.id}>
-            <Player player={player}></Player>
+            <div className={styles.player}>
+              <div className={styles.player__image} style={{backgroundImage: `url(${ player.image })`}}></div>
+              <div className={styles.player__name}>{ player.name }</div>
+            </div>
           </Link>
         )
       }

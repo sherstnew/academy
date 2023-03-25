@@ -109,6 +109,9 @@
 .header__position {
   width: 20%;
   text-align: center;
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }
 
 .header__age, .header__height {

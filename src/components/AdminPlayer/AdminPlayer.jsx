@@ -7,6 +7,7 @@ import { ModalWindow } from '../ModalWindow/ModalWindow';
 import deleteIcon from '../../static/icons/delete.svg';
 import { animateScroll } from 'react-scroll';
 import { Error } from '../../components/Error/Error';
+import { parse } from 'cookie';
 
 export const AdminPlayer = ({player}) => {
     const [deleteStatus, setDeleteStatus] = useState('normal');
@@ -25,7 +26,8 @@ export const AdminPlayer = ({player}) => {
             method: 'DELETE',
             headers: {
                 "content-type": "application/json",
-                "cache-control": "no-cache"
+                "cache-control": "no-cache",
+                "academy_token": parse(document.cookie).ACADEMY_TOKEN
             },
         }).then(data => data.json())
         .then(res => {
@@ -50,7 +52,8 @@ export const AdminPlayer = ({player}) => {
             method: 'POST',
             headers: {
               "content-type": "application/json",
-              "cache-control": "no-cache"
+              "cache-control": "no-cache",
+              "academy_token": parse(document.cookie).ACADEMY_TOKEN
             },
             body: JSON.stringify(data),
           }).then(data => data.json())
@@ -93,9 +96,7 @@ export const AdminPlayer = ({player}) => {
                 <div className={styles.label}>Введите амплуа:</div>
                 <input className={styles.input} placeholder="Введите амплуа" value={position} onChange={evt => setPosition(evt.target.value)} />
             </div>
-            <div onClick={() => submitInfo()}>
-                <UIButton>Сохранить</UIButton>
-            </div>
+            <UIButton onClick={() => submitInfo()}>Сохранить</UIButton>
         </div>
         {
             deleteStatus === 'request' ? <ModalWindow window={{title: 'Вы точно хотите удалить игрока?', about: 'Это действие невозможно отменить'}} confirm={() => deletePlayer()} decline={() => setDeleteStatus('normal')} /> : ''

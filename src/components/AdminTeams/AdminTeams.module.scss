@@ -4,6 +4,9 @@
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
+  &>* {
+    margin-top: 20px;
+  }
 }
 
 .teams__title {

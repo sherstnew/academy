@@ -6,6 +6,7 @@ import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { ACADEMYCONFIG } from '../../academy.config';
 import { Link } from 'react-router-dom';
 import { getPlayers } from '../../utils/getPlayers';
+import { parse } from 'cookie';
 import plus from '../../static/icons/plus.svg';
 import minus from '../../static/icons/minus.svg';
 import classNames from 'classnames/bind';
@@ -58,7 +59,8 @@ export const AdminTeam = ({team, allPlayers}) => {
       method: 'POST',
       headers: {
         "content-type": "application/json",
-        "cache-control": "no-cache"
+        "cache-control": "no-cache",
+        "academy_token": parse(document.cookie).ACADEMY_TOKEN
       },
       body: JSON.stringify(currentTeam),
     }).then(data => data.json())
@@ -110,9 +112,7 @@ export const AdminTeam = ({team, allPlayers}) => {
         </div>
       </div>
       <div className={styles.team__submit}>
-        <div onClick={() => submitInfo(players)}>
-          <UIButton>Сохранить</UIButton>
-        </div>
+        <UIButton onClick={() => submitInfo(players)}>Сохранить</UIButton>
       </div>
       {
           deleteStatus.status === 'request' ? <ModalWindow window={{title: 'Вы точно хотите удалить игрока из команды?', about: 'Это действие невозможно отменить, но игрок останется в общем списке.'}} confirm={() => deletePlayer(deleteStatus.id)} decline={() => setDeleteStatus({status: 'normal', id: ''})} /> : ''
