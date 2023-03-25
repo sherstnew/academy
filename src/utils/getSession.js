@@ -7,6 +7,7 @@ export function getSession(token) {
         headers: {
           "content-type": "application/json",
           "cache-control": "no-cache",
+          "academy_token": token
         },
         credentials: "include"
     }).then(res => res.json())
