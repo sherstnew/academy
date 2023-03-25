@@ -2,15 +2,18 @@ import { useState, useEffect } from 'react';
 import styles from './AdminBlock.module.scss';
 import { AdminTeams } from '../AdminTeams/AdminTeams';
 import { AdminPlayers } from '../AdminPlayers/AdminPlayers';
+import { AdminAwards } from '../AdminAwards/AdminAwards';
 import { getTeams } from '../../utils/getTeams';
-import { Loader } from '../Loader/Loader';
 import { getPlayers } from '../../utils/getPlayers';
+import { getAwards } from '../../utils/getAwards';
+import { Loader } from '../Loader/Loader';
 
 export const AdminBlock = ({admin}) => {
   const [currentAdmin, setCurrentAdmin] = useState(1);
   const [teams, setTeams] = useState([]);
-  const [status, setStatus] = useState('start');
   const [players, setPlayers] = useState([]);
+  const [awards, setAwards] = useState([]);
+  const [status, setStatus] = useState('start');
   useEffect(() => {
     setStatus('pending');
     getTeams()
@@ -19,7 +22,11 @@ export const AdminBlock = ({admin}) => {
       getPlayers()
       .then(res => {
         setPlayers(res);
-        setStatus('success');
+        getAwards()
+        .then(res => {
+          setAwards(Object.values(res));
+          setStatus('success');
+        })
       })
     })
   }, [])
@@ -31,11 +38,13 @@ export const AdminBlock = ({admin}) => {
       <div className={styles.admin__menu}>
         <div className={currentAdmin === 1 ? styles.menu__item + ' ' + styles.active : styles.menu__item} onClick={() => setCurrentAdmin(1)}>Команды</div>
         <div className={currentAdmin === 2 ? styles.menu__item + ' ' + styles.active : styles.menu__item} onClick={() => setCurrentAdmin(2)}>Игроки</div>
+        <div className={currentAdmin === 3 ? styles.menu__item + ' ' + styles.active : styles.menu__item} onClick={() => setCurrentAdmin(3)}>Награды</div>
       </div>
       <div className={styles.admin__current}>
         {
           currentAdmin === 1 ? <AdminTeams teams={teams} /> :
-          currentAdmin === 2 ? <AdminPlayers players={players} /> : ''
+          currentAdmin === 2 ? <AdminPlayers players={players} /> :
+          currentAdmin === 3? <AdminAwards awards={awards} /> : ''
         }
       </div>
     </div>
