@@ -36,12 +36,10 @@ export const LoginForm = () => {
         setStatus('success');
         window.location.href = '/lk';
       } else {
-        console.log(data);
         setStatus('error');
       }
     })
     .catch(err => {
-      console.log(err);
       setStatus('error');
     })
   }

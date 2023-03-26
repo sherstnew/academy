@@ -35,7 +35,6 @@ export const AdminTeamPage = () => {
         setStatus('success');
       })
       .catch(err => {
-        console.log(err);
         setStatus('error');
       })
     })
