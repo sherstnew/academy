@@ -21,11 +21,17 @@ export const AdminAwards = ({awards}) => {
   const [status, setStatus] = useState('success');
 
   const editAward = (award) => {
+    let currentDate = new Date();
+    let currentMonth = String(currentDate.getMonth() + 1);
+    if (currentMonth.length === 1) {
+      currentMonth = '0' + currentMonth;
+    }
+    currentDate = String(currentDate.getDate()) + '.' + currentMonth + '.' + String(currentDate.getFullYear())
     setCurrentAward(award);
     setImg(award.img);
     setName(award.name);
     setAbout(award.about);
-    setDate(award.date);
+    setDate(award.date ? award.date : currentDate);
     setShowEdit(true);
   }
 
@@ -77,7 +83,7 @@ export const AdminAwards = ({awards}) => {
   return (
     status === 'success' ? <div className={styles.awards}>
     <div className={styles.awards__title}>Награды</div>
-    <img src={plus} alt="добавить игрока" className={styles.addAward} onClick={() => editAward({id: v4(), name: 'Новая награда', about: 'Тут ничего нет', date: '01.01.2023'})} />
+    <img src={plus} alt="добавить игрока" className={styles.addAward} onClick={() => editAward({id: v4(), name: 'Новая награда', about: 'Новое описание', date: date})} />
     <div className={styles.awards__list}>
       {
         awards.map(award => <div key={award.id} onClick={() => editAward(award)}><AwardCard award={award} /></div>)
