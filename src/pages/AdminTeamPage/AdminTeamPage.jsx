@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 import { Loader } from '../../components/Loader/Loader';
+import { Error } from '../../components/Error/Error';
 import { AdminTeam } from '../../components/AdminTeam/AdminTeam';
 import styles from './AdminTeamPage.module.scss';
 import { ACADEMYCONFIG } from '../../academy.config';
@@ -44,7 +45,8 @@ export const AdminTeamPage = () => {
       <Header />
       <div className={styles.container}>
         {
-          status === 'success' ? <AdminTeam team={team} allPlayers={allPlayers} /> : <Loader />
+          status === 'success' ? <AdminTeam team={team} allPlayers={allPlayers} /> :
+          : status === 'error' ? <Error /> : <Loader />
         }
       </div>
       <Footer />
