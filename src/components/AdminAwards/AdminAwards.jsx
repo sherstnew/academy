@@ -51,6 +51,7 @@ export const AdminAwards = ({awards}) => {
   const submitInfo = () => {
     setStatus('pending');
     const data = currentAward;
+    data.img = img;
     data.name = name;
     data.about = about;
     data.date = date;

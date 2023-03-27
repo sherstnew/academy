@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Player } from '../Player/Player';
 import { Loader } from '../Loader/Loader';
+import { Error } from '../Error/Error';
 import arraySort from 'array-sort';
 import styles from './TeamBlock.module.scss';
 import arrow from '../../static/icons/arrow.svg';
@@ -24,6 +25,9 @@ export const TeamBlock = () => {
     .then(data => {
       setTeam(data);
       setStatus('success');
+    })
+    .catch(err => {
+      setStatus('error');
     })
   }, [searchParams])
   return (
@@ -51,6 +55,10 @@ export const TeamBlock = () => {
         }
       </div>
     </div>
-  </div> : <Loader />
+  </div>
+  :
+  status === 'error' ? <Error />
+  :
+  <Loader />
   )
 }
