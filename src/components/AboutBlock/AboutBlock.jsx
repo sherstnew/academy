@@ -13,7 +13,9 @@ export const AboutBlock = () => {
           <span>Академия - волейбольный клуб из Подольска, состоящий из нескольких команд.</span>
           <span>Академия существует уже более 5 лет, успешно участвует в различных соревнованиях и нередко проводит свои турниры.</span>
         </div>
-        <UIButton>Записаться</UIButton>
+        <a href="https://wa.me/79252802144" target='_blank' rel='noopener noreferrer'>
+            <UIButton>Связаться</UIButton>
+        </a>
       </div>
     </div>
   )

@@ -24,7 +24,9 @@ export const GroupsBlock = () => {
         <div className={styles.group__title}>{ groups[activeGroup - 1].name }</div>
         <div className={styles.group__about}>{ groups[activeGroup - 1].about }</div>
         <div className={styles.group__contacts}>
-          <UIButton>Записаться</UIButton>
+          <a href="https://wa.me/79252802144" target='_blank' rel='noopener noreferrer'>
+            <UIButton>Связаться</UIButton>
+          </a>
         </div>
       </Element>
     </div>
