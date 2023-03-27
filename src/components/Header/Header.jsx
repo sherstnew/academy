@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
-import logo from '../../static/images/academylogo.png';
+import logo from '../../static/images/academylogo.webp';
 
 export const Header = () => {
   return (
