@@ -1,5 +1,5 @@
 import styles from './SloganBlock.module.scss';
-import logo from '../../static/images/academylogo.png';
+import logo from '../../static/images/academylogo.webp';
 import lines from '../../static/background/righttop.svg';
 
 export const SloganBlock = () => {

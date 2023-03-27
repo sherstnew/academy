@@ -1,5 +1,5 @@
 import styles from './AboutBlock.module.scss';
-import team from '../../static/images/team.png';
+import team from '../../static/images/team.webp';
 
 import { UIButton } from '../UIButton/UIButton';
 
