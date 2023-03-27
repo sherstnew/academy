@@ -3,7 +3,7 @@ import styles from './AwardsBlock.module.scss';
 import { getAwards } from '../../utils/getAwards';
 import { Error } from '../../components/Error/Error';
 import { Loader } from '../../components/Loader/Loader';
-import { Award } from '../Award/Award';
+import { AwardCard } from '../AwardCard/AwardCard';
 
 export const AwardsBlock = () => {
   const [awards, setAwards] = useState([]);
@@ -25,7 +25,7 @@ export const AwardsBlock = () => {
       <div className={styles.awards__title}>Награды</div>
       <div className={styles.awards__list}>
         {
-          awards.map(award => <Award key={award.id} award={award} />)
+          awards.map(award => <AwardCard key={award.id} award={award} />)
         }
       </div>
     </div>

@@ -1,0 +1,34 @@
+.award {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  width: 350px;
+  height: 350px;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.award__wrapper {
+  width: 100%;
+  height: 30%;
+  text-align: left;
+}
+
+.award__title {
+  width: 100%;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.award__about {
+  width: 100%;
+  font-size: 18px;
+}
+
+.award__date {
+  width: 100%;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #b6b6b6;
+}

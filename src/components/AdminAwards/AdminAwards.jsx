@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Award } from '../../components/Award/Award';
 import styles from './AdminAwards.module.scss';
 import { Loader } from '../Loader/Loader';
 import { Error } from '../Error/Error';
@@ -9,11 +8,13 @@ import plus from '../../static/icons/plus.svg';
 import { ACADEMYCONFIG } from '../../academy.config';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { v4 } from 'uuid';
+import { AwardCard } from '../AwardCard/AwardCard';
 
 export const AdminAwards = ({awards}) => {
   const [showEdit, setShowEdit] = useState(false);
   const [deleteAward, setDeleteAward] = useState(false);
   const [currentAward, setCurrentAward] = useState(awards[0]);
+  const [img, setImg] = useState('');
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
   const [date, setDate] = useState('');
@@ -21,6 +22,7 @@ export const AdminAwards = ({awards}) => {
 
   const editAward = (award) => {
     setCurrentAward(award);
+    setImg(award.img);
     setName(award.name);
     setAbout(award.about);
     setDate(award.date);
@@ -77,7 +79,7 @@ export const AdminAwards = ({awards}) => {
     <img src={plus} alt="добавить игрока" className={styles.addAward} onClick={() => editAward({id: v4(), name: 'Новая награда', about: 'Тут ничего нет', date: '01.01.2023'})} />
     <div className={styles.awards__list}>
       {
-        awards.map(award => <div key={award.id} onClick={() => editAward(award)}><Award award={award} /></div>)
+        awards.map(award => <div key={award.id} onClick={() => editAward(award)}><AwardCard award={award} /></div>)
       }
     </div>
       {
@@ -89,11 +91,15 @@ export const AdminAwards = ({awards}) => {
           <div className={styles.modal__window}>
             <div className={styles.window__title}>Редактировать награду</div>
             <div className={styles.window__edit}>
+              <div className={styles.label}>Картинка награды</div>
+              <input type="text" className={styles.input} value={img} onChange={evt => setImg(evt.target.value)} placeholder='Введите ссылку' />
+            </div>
+            <div className={styles.window__edit}>
               <div className={styles.label}>Название награды</div>
               <input type="text" className={styles.input} value={name} onChange={evt => setName(evt.target.value)} placeholder='Введите название' />
             </div>
             <div className={styles.window__edit}>
-              <div className={styles.label}>Описание награды:</div>
+              <div className={styles.label}>Описание награды</div>
               <input type="text" className={styles.input} value={about} onChange={evt => setAbout(evt.target.value)} placeholder='Введите описание' />
             </div>
             <div className={styles.window__edit}>
