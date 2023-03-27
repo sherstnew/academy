@@ -78,19 +78,19 @@ export const AdminPlayer = ({player}) => {
             <div className={styles.player__picture}>
                 <img src={img} alt="картинка игрока" className={styles.player__image} />
                 <div className={styles.label}>Введите ссылку на картинку:</div>
-                <input className={styles.input} placeholder="Введите ссылку" value={img} onChange={evt => setImg(evt.target.value)} />
+                <input type="url" className={styles.input} placeholder="Введите ссылку" value={img} onChange={evt => setImg(evt.target.value)} />
             </div>
             <div className={styles.player__name}>
                 <div className={styles.label}>Введите имя:</div>
-                <input className={styles.input} placeholder="Введите имя" value={name} onChange={evt => setName(evt.target.value)} />
+                <input type="text" className={styles.input} placeholder="Введите имя" value={name} onChange={evt => setName(evt.target.value)} />
             </div>
             <div className={styles.player__birth}>
                 <div className={styles.label}>Введите год рождения:</div>
-                <input className={styles.input} placeholder="Введите год" value={birth} onChange={evt => setBirth(evt.target.value)} />
+                <input type="number" className={styles.input} placeholder="Введите год" value={birth} onChange={evt => setBirth(evt.target.value)} />
             </div>
             <div className={styles.player__height}>
                 <div className={styles.label}>Введите рост:</div>
-                <input className={styles.input} placeholder="Введите рост (см)" value={height} onChange={evt => setHeight(evt.target.value)} />
+                <input type="number" className={styles.input} placeholder="Введите рост (см)" value={height} onChange={evt => setHeight(evt.target.value)} />
             </div>
             <div className={styles.player__position}>
                 <div className={styles.label}>Введите амплуа:</div>

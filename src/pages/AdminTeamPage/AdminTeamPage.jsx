@@ -12,7 +12,7 @@ export const AdminTeamPage = () => {
   const [team, setTeam] = useState({});
   const [status, setStatus] = useState('start');
   const [allPlayers, setAllPlayers] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   useEffect(() => {
     setStatus('pending');
     fetch(`${ACADEMYCONFIG.HOST}/api/teams?id=${searchParams.get('id')}`, {
@@ -38,7 +38,7 @@ export const AdminTeamPage = () => {
         setStatus('error');
       })
     })
-  }, [])
+  }, [searchParams])
   return (
     <>
       <Header />

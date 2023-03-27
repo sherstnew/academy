@@ -11,7 +11,7 @@ export const TeamBlock = () => {
   const [team, setTeam] = useState([]);
   const [status, setStatus] = useState('');
   const [sort, setSort] = useState(2);
-  let [searchParams, setSearchParams] = useSearchParams();
+  let [searchParams] = useSearchParams();
   useEffect(() => {
     setStatus('pending');
     fetch(`${ACADEMYCONFIG.HOST}/api/teams?id=${searchParams.get('id')}`, {
@@ -25,7 +25,7 @@ export const TeamBlock = () => {
       setTeam(data);
       setStatus('success');
     })
-  }, [])
+  }, [searchParams])
   return (
     status === 'success' ? <div className={styles.teamBlock}>
     <div className={styles.team__info}>

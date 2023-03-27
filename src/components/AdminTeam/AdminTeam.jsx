@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './AdminTeam.module.scss';
 import { UIButton } from '../UIButton/UIButton';
 import { Loader } from '../Loader/Loader';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { ACADEMYCONFIG } from '../../academy.config';
 import { Link } from 'react-router-dom';
-import { getPlayers } from '../../utils/getPlayers';
 import { parse } from 'cookie';
 import plus from '../../static/icons/plus.svg';
 import minus from '../../static/icons/minus.svg';
@@ -19,7 +18,7 @@ export const AdminTeam = ({team, allPlayers}) => {
   const [img, setImg] = useState(team.img);
   const [name, setName] = useState(team.name);
   const [about, setAbout] = useState(team.about);
-  const [players, setPlayers] = useState(team.players);
+  const [players] = useState(team.players);
   const [otherPlayers, setOtherPlayers] = useState(allPlayers);
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [status, setStatus] = useState('success');
