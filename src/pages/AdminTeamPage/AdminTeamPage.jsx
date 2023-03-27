@@ -46,7 +46,7 @@ export const AdminTeamPage = () => {
       <div className={styles.container}>
         {
           status === 'success' ? <AdminTeam team={team} allPlayers={allPlayers} /> :
-          : status === 'error' ? <Error /> : <Loader />
+          status === 'error' ? <Error /> : <Loader />
         }
       </div>
       <Footer />
