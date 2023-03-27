@@ -10,8 +10,8 @@ export const AboutBlock = () => {
       <div className={styles.about}>
         <div className={styles.about__title}>Кто мы?</div>
         <div className={styles.about__text}>
-          <span>Академия - волейбольный клуб из Подольска, состоящий из нескольких команд.</span>
-          <span>Академия существует уже более 5 лет, успешно участвует в различных соревнованиях и нередко проводит свои турниры.</span>
+          <span>Академия - волейбольный клуб из Подольска, в состав которого входят несколько команд.</span>
+          <span>Академия существует уже более 5 лет, успешно участвует в различных соревнованиях и проводит свои турниры.</span>
         </div>
         <a href="https://wa.me/79252802144" target='_blank' rel='noopener noreferrer'>
             <UIButton>Связаться</UIButton>
