@@ -2,6 +2,7 @@ import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 import { SloganBlock } from '../../components/SloganBlock/SloganBlock';
 import { AboutBlock } from '../../components/AboutBlock/AboutBlock';
+import { MapBlock } from '../../components/MapBlock/MapBlock';
 import { GroupsBlock } from '../../components/GroupsBlock/GroupsBlock';
 import { Link, Element } from 'react-scroll';
 import styles from './HomePage.module.scss';
@@ -19,6 +20,9 @@ export const HomePage = () => {
       </Element>
       <Element name='aboutBlock'>
         <AboutBlock />
+      </Element>
+      <Element name='mapBlock'>
+        <MapBlock />
       </Element>
       <Element name='groupsBlock'>
         <GroupsBlock />

@@ -1,0 +1,50 @@
+.mapBlock {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 90vw;
+  height: 80vh;
+  @media screen and (max-width: 500px) {
+    height: 100vh;
+  }
+}
+
+.map {
+  width: 40%;
+  height: 60%;
+  @media screen and (max-width: 500px) {
+    width: 90%;
+  }
+}
+
+.about {
+  width: 50%;
+  @media screen and (max-width: 500px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+.about__title {
+  font-size: 60px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  @media screen and (max-width: 500px) {
+    text-align: center;
+    font-size: 40px;
+  }
+}
+
+.about__text {
+  width: 50%;
+  font-size: 19px;
+  text-align: justify;
+  @media screen and (max-width: 500px) {
+    width: 90%;
+    font-size: 17px;
+  }
+}
