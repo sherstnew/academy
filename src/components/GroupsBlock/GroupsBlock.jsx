@@ -3,6 +3,7 @@ import { groups } from '../../constants/groups';
 import { useState } from 'react';
 import { Element, scroller } from 'react-scroll';
 import { UIButton } from '../UIButton/UIButton';
+import { ACADEMYCONFIG } from '../../academy.config';
 
 export const GroupsBlock = () => {
   const [ activeGroup, setActiveGroup ] = useState(1);
@@ -24,7 +25,7 @@ export const GroupsBlock = () => {
         <div className={styles.group__title}>{ groups[activeGroup - 1].name }</div>
         <div className={styles.group__about}>{ groups[activeGroup - 1].about }</div>
         <div className={styles.group__contacts}>
-          <a href="https://wa.me/79252802144" target='_blank' rel='noopener noreferrer'>
+          <a href={ACADEMYCONFIG.CONTACT} target='_blank' rel='noopener noreferrer'>
             <UIButton>Связаться</UIButton>
           </a>
         </div>

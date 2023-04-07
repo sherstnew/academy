@@ -23,6 +23,12 @@ export const TeamBlock = () => {
       }
     }).then((res => res.json()))
     .then(data => {
+      for (let i = 0; i < data.players.length; i++) {
+        const player = data.players[i];
+        const birthArr = player.birth.split('/');
+        player.birth = Math.floor((new Date() - new Date(Number(birthArr[2]), Number(birthArr[1]) - 1, Number(birthArr[0]))) / 1000 / 3600 / 24 / 30 / 12);
+        data.players[i] = player;
+      }
       setTeam(data);
       setStatus('success');
     })
@@ -48,10 +54,10 @@ export const TeamBlock = () => {
           <div className={styles.header__position}>Амплуа</div>
       </div>
         {
-          sort === 1 ? arraySort(team.players, 'birth').reverse().map(player => <Player key={player.id} player={player} />) :
-          sort === 2 ? arraySort(team.players, 'birth').map(player => <Player key={player.id} player={player} />) :
-          sort === 3 ? arraySort(team.players, 'height').map(player => <Player key={player.id} player={player} />) :
-          sort === 4 ? arraySort(team.players, 'height').reverse().map(player => <Player key={player.id} player={player} />) : ``
+          sort === 1 ? arraySort(team.players, 'birth').map(player => <Player key={player.id} player={player} />) :
+          sort === 2 ? arraySort(team.players, 'birth').reverse().map(player => <Player key={player.id} player={player} />) :
+          sort === 3 ? arraySort(team.players, 'height').reverse().map(player => <Player key={player.id} player={player} />) :
+          sort === 4 ? arraySort(team.players, 'height').map(player => <Player key={player.id} player={player} />) : ``
         }
       </div>
     </div>

@@ -17,6 +17,7 @@ export const AdminPlayer = ({player}) => {
     const [height, setHeight] = useState(player.height);
     const [position, setPosition] = useState(player.position);
     const [status, setStatus] = useState('success');
+
     useEffect(() => {
         animateScroll.scrollToTop({duration: 0});
     }, []);
@@ -85,8 +86,8 @@ export const AdminPlayer = ({player}) => {
                 <input type="text" className={styles.input} placeholder="Введите имя" value={name} onChange={evt => setName(evt.target.value)} />
             </div>
             <div className={styles.player__birth}>
-                <div className={styles.label}>Введите год рождения:</div>
-                <input type="number" className={styles.input} placeholder="Введите год" value={birth} onChange={evt => setBirth(evt.target.value)} />
+                <div className={styles.label}>Введите дату рождения:</div>
+                <input type="text" className={styles.input} placeholder="Введите дату" value={birth} onChange={evt => setBirth(evt.target.value)} />
             </div>
             <div className={styles.player__height}>
                 <div className={styles.label}>Введите рост:</div>
