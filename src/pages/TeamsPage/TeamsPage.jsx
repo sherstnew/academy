@@ -5,10 +5,12 @@ import { Footer } from '../../components/Footer/Footer';
 
 export const TeamsPage = () => {
   return (
-    <div className={styles.container}>
-      <Header />
-      <TeamsList />
-      <Footer />
-    </div>
+    <>
+    <Header />
+      <div className={styles.container}>
+        <TeamsList />
+      </div>
+    <Footer />
+    </>
   )
 }

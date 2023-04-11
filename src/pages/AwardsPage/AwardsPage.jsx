@@ -5,10 +5,12 @@ import { AwardsBlock } from '../../components/AwardsBlock/AwardsBlock';
 
 export const AwardsPage = () => {
   return (
-    <div className={styles.container}>
-      <Header />
-      <AwardsBlock />
-      <Footer />
-    </div>
+    <>
+    <Header />
+      <div className={styles.container}>
+        <AwardsBlock />
+      </div>
+    <Footer />
+    </>
   )
 }
