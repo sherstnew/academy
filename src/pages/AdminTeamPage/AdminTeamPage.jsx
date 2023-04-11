@@ -24,20 +24,27 @@ export const AdminTeamPage = () => {
       }
     }).then((res => res.json()))
     .then(data => {
-      setTeam(data);
-      getPlayers()
-      .then(res => {
-        let currentTeamIds = []
-        data.players.forEach(pl => {
-          currentTeamIds.push(pl.id);
+      if (data.status === 'ok') {
+        setTeam(data.data);
+        getPlayers()
+        .then(players => {
+          let currentTeamIds = [];
+          data.data.players.forEach(pl => {
+            currentTeamIds.push(pl._id);
+          });
+          players = players.filter(p => !currentTeamIds.includes(p.id));
+          setAllPlayers(players);
+          setStatus('success');
         })
-        res = res.filter(p => !currentTeamIds.includes(p.id));
-        setAllPlayers(res);
-        setStatus('success');
-      })
-      .catch(err => {
+        .catch(err => {
+          setStatus('error');
+        })
+      } else {
         setStatus('error');
-      })
+      }
+    })
+    .catch(err => {
+      setStatus('error');
     })
   }, [searchParams])
   return (

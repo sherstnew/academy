@@ -8,6 +8,7 @@ import { LoginPage } from './pages/LoginPage/LoginPage';
 import { LkPage } from './pages/LkPage/LkPage';
 import { AdminTeamPage } from './pages/AdminTeamPage/AdminTeamPage';
 import { AdminPlayerPage } from './pages/AdminPlayerPage/AdminPlayerPage';
+import { CoachPage } from './pages/CoachPage/CoachPage';
 
 export const App = () => {
   return (
@@ -17,6 +18,7 @@ export const App = () => {
         <Route path='/teams' element={<TeamsPage />} />
         <Route path='/team' element={<TeamPage />} />
         <Route path='/awards' element={<AwardsPage />} />
+        <Route path='/coaches' element={<CoachPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/lk' element={<LkPage />} />
         <Route path='/lk/team' element={<AdminTeamPage />} />

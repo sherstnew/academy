@@ -18,8 +18,8 @@ export const LkPage = () => {
     if (tok) {
       getSession(tok)
       .then(data => {
-        if (data.id && data !== 'SESSION_ERR') {
-          getProfile(data.id)
+        if (data.admin_id && data !== 'SESSION_ERR') {
+          getProfile(data.admin_id)
           .then(profile => {
             if (profile) {
               setAdminInfo(profile);

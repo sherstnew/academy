@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './AdminTeam.module.scss';
 import { UIButton } from '../UIButton/UIButton';
 import { Loader } from '../Loader/Loader';
+import { Error } from '../Error/Error';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
 import { ACADEMYCONFIG } from '../../academy.config';
 import { Link } from 'react-router-dom';
@@ -12,9 +13,8 @@ import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);
 
 export const AdminTeam = ({team, allPlayers}) => {
-  const [addStatus, setAddStatus] = useState({status: 'normal', id: ''});
-  const [deleteStatus, setDeleteStatus] = useState({status: 'normal', ids: []});
-  const [currentTeam, setCurrentTeam] = useState(team);
+  const [addStatus, setAddStatus] = useState({status: 'normal', ids: []});
+  const [deleteStatus, setDeleteStatus] = useState({status: 'normal', id: ''});
   const [img, setImg] = useState(team.img);
   const [name, setName] = useState(team.name);
   const [about, setAbout] = useState(team.about);
@@ -23,45 +23,31 @@ export const AdminTeam = ({team, allPlayers}) => {
   const [selectedPlayers, setSelectedPlayers] = useState([]);
   const [status, setStatus] = useState('success');
 
-  const addPlayers = () => {
-    const new_players = [...players, ...selectedPlayers];
-    submitInfo(new_players);
-  }
 
   const selectPlayer = (player, evt) => {
-    if (selectedPlayers.includes(player)) {
-      selectedPlayers.splice(selectedPlayers.indexOf(player), 1);
+    if (selectedPlayers.includes(player._id)) {
+      selectedPlayers.splice(selectedPlayers.indexOf(player._id), 1);
       evt.target.style.color = '#000000';
     } else {
       evt.target.style.color = '#a1a1a1';
-      selectedPlayers.push(player);
+      selectedPlayers.push(player._id);
     }
     setSelectedPlayers(selectedPlayers);
   }
 
-  const deletePlayer = (id) => {
-    setDeleteStatus({status: 'normal', id: ''});
-    let pl = players;
-    pl = pl.filter(p => p.id !== id);
-    submitInfo(pl);
-  }
-
-  const submitInfo = (pl) => {
+  const addPlayers = () => {
     setStatus('pending');
-    const data = team;
-    data.img = img;
-    data.name = name;
-    data.about = about;
-    data.players = pl;
-    setCurrentTeam(data);
-    fetch(`${ACADEMYCONFIG.HOST}/api/teams`, {
-      method: 'POST',
+    fetch(`${ACADEMYCONFIG.HOST}/api/teams/players`, {
+      method: 'PATCH',
       headers: {
         "content-type": "application/json",
         "cache-control": "no-cache",
         "academy_token": parse(document.cookie).ACADEMY_TOKEN
       },
-      body: JSON.stringify(currentTeam),
+      body: JSON.stringify({
+        playerIds: selectedPlayers,
+        teamId: team._id
+      }),
     }).then(data => data.json())
     .then(res => {
       if (res.status === 'ok') {
@@ -72,6 +58,59 @@ export const AdminTeam = ({team, allPlayers}) => {
       }
     })
   }
+
+  const deletePlayer = (id) => {
+    setDeleteStatus({status: 'normal', id: ''});
+    setStatus('pending');
+    fetch(`${ACADEMYCONFIG.HOST}/api/teams/players`, {
+      method: 'DELETE',
+      headers: {
+        "content-type": "application/json",
+        "cache-control": "no-cache",
+        "academy_token": parse(document.cookie).ACADEMY_TOKEN
+      },
+      body: JSON.stringify({
+        playerId: id,
+        teamId: team._id
+      }),
+    }).then(data => data.json())
+    .then(res => {
+      if (res.status === 'ok') {
+        setStatus('success');
+        window.location.reload();
+      } else {
+        setStatus('error')
+      }
+    })
+  }
+
+  const editTeam = () => {
+    setStatus('pending');
+    team.name = name;
+    team.about = about;
+    team.img = img;
+    let formatted_players = [];
+    team.players.map(pl => formatted_players.push(pl._id));
+    team.players = formatted_players;
+    fetch(`${ACADEMYCONFIG.HOST}/api/teams`, {
+      method: 'PATCH',
+      headers: {
+        "content-type": "application/json",
+        "cache-control": "no-cache",
+        "academy_token": parse(document.cookie).ACADEMY_TOKEN
+      },
+      body: JSON.stringify(team),
+    }).then(data => data.json())
+    .then(res => {
+      if (res.status === 'ok') {
+        setStatus('success');
+        window.location.reload();
+      } else {
+        setStatus('error')
+      }
+    })
+  }
+
   return (
     status === 'success' ?
     <div className={styles.team}>
@@ -98,12 +137,12 @@ export const AdminTeam = ({team, allPlayers}) => {
         <div className={styles.players__title}>Игроки</div>
         {
           players.map(player =>
-          <div key={player.id} className={styles.player__wrapper}>
-            <Link to={'/lk/player?id=' + player.id} className={styles.player}>
+          <div key={player._id} className={styles.player__wrapper}>
+            <Link to={'/lk/player?id=' + player._id} className={styles.player}>
               <div className={styles.player__image} style={{backgroundImage: `url(${ player.image })`}}></div>
               <div className={styles.player__name}>{ player.name }</div>
             </Link>
-            <img src={minus} alt="удалить из команды" className={styles.player__delete} onClick={() => setDeleteStatus({status: 'request', id: player.id})} />
+            <img src={minus} alt="удалить из команды" className={styles.player__delete} onClick={() => setDeleteStatus({status: 'request', id: player._id})} />
           </div>)
         }
         <div className={styles.players__add}>
@@ -111,7 +150,7 @@ export const AdminTeam = ({team, allPlayers}) => {
         </div>
       </div>
       <div className={styles.team__submit}>
-        <UIButton onClick={() => submitInfo(players)}>Сохранить</UIButton>
+        <UIButton onClick={() => editTeam()}>Сохранить</UIButton>
       </div>
       {
           deleteStatus.status === 'request' ? <ModalWindow window={{title: 'Вы точно хотите удалить игрока из команды?', about: 'Это действие невозможно отменить, но игрок останется в общем списке.'}} confirm={() => deletePlayer(deleteStatus.id)} decline={() => setDeleteStatus({status: 'normal', id: ''})} /> : ''
@@ -125,7 +164,7 @@ export const AdminTeam = ({team, allPlayers}) => {
             <div className={styles.window__players}>
               {
                 otherPlayers.map(player =>
-                <div key={player.id} onClick={evt => selectPlayer(player, evt)} className={cx({player: true, addPlayer: true})}>
+                <div key={player._id} onClick={evt => selectPlayer(player, evt)} className={cx({player: true, addPlayer: true})}>
                   <div className={styles.player__image} style={{backgroundImage: `url(${ player.image })`}}></div>
                   <div className={styles.player__name}>{ player.name }</div>
                 </div>
@@ -142,6 +181,6 @@ export const AdminTeam = ({team, allPlayers}) => {
       }
     </div>
     :
-    status === 'error' ? 'Произошла ошибка, обратитесь к администратору.' : <Loader />
+    status === 'error' ? <Error /> : <Loader />
   )
 }

@@ -7,7 +7,6 @@ import deleteIcon from '../../static/icons/delete.svg';
 import plus from '../../static/icons/plus.svg';
 import { ACADEMYCONFIG } from '../../academy.config';
 import { ModalWindow } from '../ModalWindow/ModalWindow';
-import { v4 } from 'uuid';
 import { AwardCard } from '../AwardCard/AwardCard';
 
 export const AdminAwards = ({awards}) => {
@@ -20,7 +19,7 @@ export const AdminAwards = ({awards}) => {
   const [date, setDate] = useState('');
   const [status, setStatus] = useState('success');
 
-  const editAward = (award) => {
+  const showModal = (award) => {
     let currentDate = new Date();
     let currentMonth = String(currentDate.getMonth() + 1);
     if (currentMonth.length === 1) {
@@ -36,7 +35,7 @@ export const AdminAwards = ({awards}) => {
   }
 
   const deleteCurrentAward = () => {
-    fetch(`${ACADEMYCONFIG.HOST}/api/awards?id=${currentAward.id}`, {
+    fetch(`${ACADEMYCONFIG.HOST}/api/awards?id=${currentAward._id}`, {
       method: 'DELETE',
       headers: {
         "content-type": "application/json",
@@ -47,14 +46,41 @@ export const AdminAwards = ({awards}) => {
     .then(res => {
       if (res.status === 'ok') {
         setStatus('success');
-        window.location.href = '/lk';
+        window.location.reload();
       } else {
         setStatus('error');
       }
-    })
+    });
   }
 
-  const submitInfo = () => {
+  const createAward = () => {
+    setStatus('pending');
+    const data = currentAward;
+    data.img = img;
+    data.name = name;
+    data.about = about;
+    data.date = date;
+    delete data.status;
+    fetch(`${ACADEMYCONFIG.HOST}/api/awards`, {
+      method: 'POST',
+      headers: {
+        "content-type": "application/json",
+        "cache-control": "no-cache",
+        "academy_token": parse(document.cookie).ACADEMY_TOKEN
+      },
+      body: JSON.stringify(data),
+    }).then(data => data.json())
+    .then(res => {
+      if (res.status === 'ok') {
+        setStatus('success');
+        window.location.reload();
+      } else {
+        setStatus('error');
+      }
+    });
+  };
+
+  const editAward = () => {
     setStatus('pending');
     const data = currentAward;
     data.img = img;
@@ -62,7 +88,7 @@ export const AdminAwards = ({awards}) => {
     data.about = about;
     data.date = date;
     fetch(`${ACADEMYCONFIG.HOST}/api/awards`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
           "content-type": "application/json",
           "cache-control": "no-cache",
@@ -73,20 +99,20 @@ export const AdminAwards = ({awards}) => {
       .then(res => {
         if (res.status === 'ok') {
           setStatus('success');
-          window.location.href = '/lk';
+          window.location.reload();
         } else {
           setStatus('error');
         }
-      })
-};
+      });
+  };
 
   return (
     status === 'success' ? <div className={styles.awards}>
     <div className={styles.awards__title}>Награды</div>
-    <img src={plus} alt="добавить игрока" className={styles.addAward} onClick={() => editAward({id: v4(), name: 'Новая награда', about: 'Новое описание', date: date})} />
+    <img src={plus} alt="добавить игрока" className={styles.addAward} onClick={() => showModal({status: 'new', name: 'Новая награда', about: 'Новое описание', date: date})} />
     <div className={styles.awards__list}>
       {
-        awards.map(award => <div key={award.id} onClick={() => editAward(award)}><AwardCard award={award} /></div>)
+        awards.map(award => <div key={award._id} onClick={() => showModal(award)}><AwardCard award={award} /></div>)
       }
     </div>
       {
@@ -114,7 +140,7 @@ export const AdminAwards = ({awards}) => {
               <input type="text" className={styles.input} value={date} onChange={evt => setDate(evt.target.value)} />
             </div>
             <div className={styles.window__choose}>
-              <div className={styles.choose__confirm} onClick={() => submitInfo()}>Подтвердить</div>
+              <div className={styles.choose__confirm} onClick={() => currentAward.status === 'new' ? createAward() : editAward()}>Подтвердить</div>
               <div className={styles.choose__decline} onClick={() => setShowEdit(false)}>Выйти</div>
               <img src={deleteIcon} alt="удалить" className={styles.choose__delete} onClick={() => setDeleteAward(true)} />
             </div>

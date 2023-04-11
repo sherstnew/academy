@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100vw;
+  min-height: 80vh;
+  margin-top: 150px;
+  @media screen and (max-width: 500px) {
+    margin-top: 100px;
+  }
+}
+
+.header {
+  font-size: 40px;
+  font-weight: 500;
+  width: 70%;
+  margin: 20px 0px 20px 50px;
+}
+
+.coaches__list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 70%;
+  height: 100%;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+}

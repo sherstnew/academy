@@ -19,7 +19,7 @@ export const AdminPlayers = ({players}) => {
       </div>
       {
         filteredPlayers.map(player =>
-          <Link to={`/lk/player?id=${player.id}`} key={player.id}>
+          <Link to={`/lk/player?id=${player._id}`} key={player._id}>
             <div className={styles.player}>
               <div className={styles.player__image} style={{backgroundImage: `url(${ player.image })`}}></div>
               <div className={styles.player__name}>{ player.name }</div>

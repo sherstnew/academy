@@ -2,6 +2,7 @@ import styles from './TeamsList.module.scss';
 import { TeamCard } from '../TeamCard/TeamCard';
 import { useEffect, useState } from 'react';
 import { Loader } from '../Loader/Loader';
+import { Error } from '../Error/Error';
 import { getTeams } from '../../utils/getTeams';
 
 export const TeamsList = () => {
@@ -14,6 +15,9 @@ export const TeamsList = () => {
       setTeams(data);
       setStatus('success');
     })
+    .catch(err => {
+      setStatus('error');
+    })
   }, [])
   return (
     status === 'success' ?
@@ -21,9 +25,13 @@ export const TeamsList = () => {
       <div className={styles.title}>Наши команды</div>
       <ul className={styles.teams}>
         {
-          teams.map(team => <TeamCard admin='' key={team.id} team={team} />)
+          teams.map(team => <TeamCard admin='' key={team._id} team={team} />)
         }
       </ul>
-    </div> : <Loader />
+    </div>
+    :
+    status === 'error' ? <Error />
+    :
+    <Loader />
   )
 }

@@ -12,7 +12,7 @@ export const AwardsBlock = () => {
     setStatus('pending');
     getAwards()
     .then(res => {
-      setAwards(Object.values(res));
+      setAwards(res);
       setStatus('success');
     })
     .catch(err => {
@@ -25,7 +25,7 @@ export const AwardsBlock = () => {
       <div className={styles.awards__title}>Награды</div>
       <div className={styles.awards__list}>
         {
-          awards.map(award => <AwardCard key={award.id} award={award} />)
+          awards.map(award => <AwardCard key={award._id} award={award} />)
         }
       </div>
     </div>

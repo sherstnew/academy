@@ -12,7 +12,11 @@ export function getSession(token) {
         credentials: "include"
     }).then(res => res.json())
     .then(data => {
-      resolve(data);
+      if (data.status === 'ok') {
+        resolve(data.data);
+      } else {
+        reject('error');
+      };
     })
     .catch(err => {
       reject('error');

@@ -8,6 +8,7 @@ import deleteIcon from '../../static/icons/delete.svg';
 import { animateScroll } from 'react-scroll';
 import { Error } from '../../components/Error/Error';
 import { parse } from 'cookie';
+import { useSearchParams } from 'react-router-dom';
 
 export const AdminPlayer = ({player}) => {
     const [deleteStatus, setDeleteStatus] = useState('normal');
@@ -17,13 +18,14 @@ export const AdminPlayer = ({player}) => {
     const [height, setHeight] = useState(player.height);
     const [position, setPosition] = useState(player.position);
     const [status, setStatus] = useState('success');
+    const [searchParams] = useSearchParams();
 
     useEffect(() => {
         animateScroll.scrollToTop({duration: 0});
     }, []);
     const deletePlayer = () => {
         setStatus('pending');
-        fetch(`${ACADEMYCONFIG.HOST}/api/players?id=${player.id}`, {
+        fetch(`${ACADEMYCONFIG.HOST}/api/players?id=${player._id}`, {
             method: 'DELETE',
             headers: {
                 "content-type": "application/json",
@@ -50,7 +52,7 @@ export const AdminPlayer = ({player}) => {
         data.height = height;
         data.position = position;
         fetch(`${ACADEMYCONFIG.HOST}/api/players`, {
-            method: 'POST',
+            method: 'PATCH',
             headers: {
               "content-type": "application/json",
               "cache-control": "no-cache",
@@ -67,6 +69,33 @@ export const AdminPlayer = ({player}) => {
             }
           })
     };
+
+    const createPlayer = () => {
+        setStatus('pending');
+        const data = player;
+        data.image = img;
+        data.name = name;
+        data.birth = birth;
+        data.height = height;
+        data.position = position;
+        fetch(`${ACADEMYCONFIG.HOST}/api/players`, {
+            method: 'POST',
+            headers: {
+              "content-type": "application/json",
+              "cache-control": "no-cache",
+              "academy_token": parse(document.cookie).ACADEMY_TOKEN
+            },
+            body: JSON.stringify(data),
+          }).then(data => data.json())
+          .then(res => {
+            if (res.status === 'ok') {
+              setStatus('success');
+              window.location.href = '/lk';
+            } else {
+              setStatus('error')
+            }
+          })
+    }
 
     return (
         status === 'success' ?
@@ -97,7 +126,11 @@ export const AdminPlayer = ({player}) => {
                 <div className={styles.label}>Введите амплуа:</div>
                 <input className={styles.input} placeholder="Введите амплуа" value={position} onChange={evt => setPosition(evt.target.value)} />
             </div>
-            <UIButton onClick={() => submitInfo()}>Сохранить</UIButton>
+            <UIButton onClick={() => searchParams.get('id') === 'new' ? createPlayer() : submitInfo()}>
+                {
+                    searchParams.get('id') === 'new' ? 'Создать' : 'Сохранить'
+                }
+            </UIButton>
         </div>
         {
             deleteStatus === 'request' ? <ModalWindow window={{title: 'Вы точно хотите удалить игрока?', about: 'Это действие невозможно отменить'}} confirm={() => deletePlayer()} decline={() => setDeleteStatus('normal')} /> : ''
