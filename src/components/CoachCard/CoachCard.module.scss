@@ -1,29 +1,49 @@
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
 .coach {
   display: flex;
   justify-content: flex-start;
-  align-content: flex-end;
+  align-items: center;
+  align-content: center;
   flex-wrap: wrap;
   padding: 20px;
   margin: 30px;
-  width: 30%;
-  min-height: 400px;
+  width: 100%;
+  min-height: 100px;
   border-radius: 10px;
-  background-size: cover;
-  color: #ffffff;
+  color: #000000;
   @media screen and (max-width: 500px) {
     width: 100%;
+    justify-content: center;
+    gap: 20px;
   }
+}
+
+.coach__img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-size: cover;
 }
 
 .coach__info {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-content: center;
   flex-wrap: wrap;
+  gap: 10px;
   width: 40%;
-  margin-bottom: 20px;
+  margin-left: 50px;
   @media screen and (max-width: 500px) {
     width: 100%;
+    justify-content: center;
+    margin: 0;
   }
 }
 
@@ -31,10 +51,47 @@
   font-weight: 500;
   font-size: 32px;
   width: 100%;
-  margin-bottom: 10px;
+  @media screen and (max-width: 500px) {
+    text-align: center;
+  }
 }
 
 .coach__about {
   font-size: 16px;
   width: 100%;
+  @media screen and (max-width: 500px) {
+    text-align: center;
+  }
+}
+
+.more_btn {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.selected {
+  transform: rotate(135deg);
+  transition: 0.5s;
+}
+
+.more {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+  width: 93%;
+  height: 0px;
+  font-size: 17px;
+  text-align: justify;
+}
+
+.show {
+  opacity: 1;
+  visibility: visible;
+  transition: 0.5s;
+  height: 150px;
+  @media screen and (max-width: 500px) {
+    height: 300px;
+  }
 }

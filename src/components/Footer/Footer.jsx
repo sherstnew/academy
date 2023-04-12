@@ -15,7 +15,7 @@ export const Footer = () => {
       <a href='/login' className={styles.login}>
         Личный кабинет
       </a>
-      <div className={styles.academy}>
+      <div className={styles.name}>
         Академия
       </div>
     </footer>

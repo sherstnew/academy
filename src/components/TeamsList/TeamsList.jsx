@@ -21,14 +21,14 @@ export const TeamsList = () => {
   }, [])
   return (
     status === 'success' ?
-    <div className={styles.teams_wrapper}>
+    <>
       <div className={styles.title}>Наши команды</div>
       <ul className={styles.teams}>
         {
           teams.map(team => <TeamCard admin='' key={team._id} team={team} />)
         }
       </ul>
-    </div>
+    </>
     :
     status === 'error' ? <Error />
     :

@@ -2,7 +2,7 @@ import { ACADEMYCONFIG } from '../../academy.config';
 import { useEffect, useState } from 'react';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
-import { CoachCard } from '../../components/CoachCard/CoachCard';
+import { CoachesList } from '../../components/CoachesList/CoachesList';
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 import styles from './CoachPage.module.scss';
@@ -34,12 +34,7 @@ export const CoachPage = () => {
       {
         status === 'success' ?
         <div className={styles.container}>
-          <header className={styles.header}>Тренеры Академии</header>
-          <div className={styles.coaches__list}>
-            {
-              coaches.map(coach => <CoachCard key={coach._id} coach={coach} />)
-            }
-          </div>
+          <CoachesList coaches={coaches} />
         </div>
         :
         status === 'error' ? <Error />

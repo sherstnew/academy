@@ -1,18 +1,20 @@
-.teams {
+.coaches {
   display: flex;
   justify-content: center;
-  align-content: space-evenly;
+  align-items: flex-start;
   flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-  gap: 50px;
-  margin-top: 70px;
+  width: 90%;
+  height: 50vh;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+    height: 100%;
+  }
 }
 
-.title {
+.header {
   width: 100%;
-  font-weight: 500;
   font-size: 50px;
+  font-weight: 500;
   text-align: center;
   @media screen and (max-width: 500px) {
     font-size: 30px;
