@@ -9,7 +9,7 @@ import { getAwards } from '../../utils/getAwards';
 
 export const AwardsPage = () => {
   const [awards, setAwards] = useState([]);
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('success');
   useEffect(() => {
     setStatus('pending');
     getAwards()

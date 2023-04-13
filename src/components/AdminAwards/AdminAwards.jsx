@@ -17,7 +17,7 @@ export const AdminAwards = ({awards}) => {
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
   const [date, setDate] = useState('');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('success');
 
   const showModal = (award) => {
     let currentDate = new Date();

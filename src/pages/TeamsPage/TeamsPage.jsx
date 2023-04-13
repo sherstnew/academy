@@ -9,7 +9,7 @@ import { getTeams } from '../../utils/getTeams';
 
 export const TeamsPage = () => {
   const [teams, setTeams] = useState([]);
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('success');
   useEffect(() => {
     setStatus('pending');
     getTeams()

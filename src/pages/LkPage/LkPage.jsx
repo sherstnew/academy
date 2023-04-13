@@ -11,7 +11,7 @@ import { Error } from '../../components/Error/Error';
 
 export const LkPage = () => {
   const [adminInfo, setAdminInfo] = useState({});
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('success');
   useEffect(() => {
     setStatus('pending');
     let tok = parse(document.cookie)['ACADEMY_TOKEN'];

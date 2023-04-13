@@ -6,7 +6,7 @@ import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
 import { AdminTeam } from '../../components/AdminTeam/AdminTeam';
 import styles from './AdminTeamPage.module.scss';
-import { ACADEMYCONFIG } from '../../academy.config';
+import { getTeams } from '../../utils/getTeams';
 import { getPlayers } from '../../utils/getPlayers';
 
 export const AdminTeamPage = () => {
@@ -16,37 +16,27 @@ export const AdminTeamPage = () => {
   const [searchParams] = useSearchParams();
   useEffect(() => {
     setStatus('pending');
-    fetch(`${ACADEMYCONFIG.HOST}/api/teams?id=${searchParams.get('id')}`, {
-      method: 'GET',
-      headers: {
-        "content-type": "application/json",
-        "cache-control": "no-cache"
-      }
-    }).then((res => res.json()))
+    getTeams(searchParams.get('id'))
     .then(data => {
-      if (data.status === 'ok') {
-        setTeam(data.data);
-        getPlayers()
-        .then(players => {
-          let currentTeamIds = [];
-          data.data.players.forEach(pl => {
-            currentTeamIds.push(pl._id);
-          });
-          players = players.filter(p => !currentTeamIds.includes(p.id));
-          setAllPlayers(players);
-          setStatus('success');
-        })
-        .catch(err => {
-          setStatus('error');
-        })
-      } else {
+      setTeam(data);
+      getPlayers()
+      .then(players => {
+        let currentTeamIds = [];
+        data.players.forEach(pl => {
+          currentTeamIds.push(pl._id);
+        });
+        players = players.filter(p => !currentTeamIds.includes(p.id));
+        setAllPlayers(players);
+        setStatus('success');
+      })
+      .catch(err => {
         setStatus('error');
-      }
+      })
     })
     .catch(err => {
       setStatus('error');
     })
-  }, [searchParams])
+  }, [searchParams]);
   return (
     <>
       <Header />

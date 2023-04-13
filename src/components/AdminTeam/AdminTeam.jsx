@@ -21,7 +21,7 @@ export const AdminTeam = ({team, allPlayers}) => {
   const [players] = useState(team.players);
   const [otherPlayers, setOtherPlayers] = useState(allPlayers);
   const [selectedPlayers, setSelectedPlayers] = useState([]);
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('success');
 
 
   const selectPlayer = (player, evt) => {

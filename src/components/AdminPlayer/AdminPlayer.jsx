@@ -17,7 +17,7 @@ export const AdminPlayer = ({player}) => {
     const [birth, setBirth] = useState(player.birth);
     const [height, setHeight] = useState(player.height);
     const [position, setPosition] = useState(player.position);
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState('success');
     const [searchParams] = useSearchParams();
 
     useEffect(() => {

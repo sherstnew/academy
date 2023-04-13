@@ -12,7 +12,7 @@ import { Footer } from '../../components/Footer/Footer';
 
 export const TeamPage = () => {
   const [team, setTeam] = useState([]);
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('success');
   let [searchParams] = useSearchParams();
   useEffect(() => {
     setStatus('pending');

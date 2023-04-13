@@ -8,7 +8,7 @@ import styles from './CoachPage.module.scss';
 import { getCoaches } from '../../utils/getCoaches';
 
 export const CoachPage = () => {
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('success');
   const [coaches, setCoaches] = useState([]);
   useEffect(() => {
     setStatus('pending');

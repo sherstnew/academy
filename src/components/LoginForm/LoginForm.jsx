@@ -8,7 +8,7 @@ import { ACADEMYCONFIG } from '../../academy.config';
 export const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('success');
   useEffect(() => {
     if (parse(document.cookie).ACADEMY_TOKEN) {
       window.location.href = '/lk';

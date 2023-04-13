@@ -13,7 +13,7 @@ export const AdminBlock = ({admin}) => {
   const [teams, setTeams] = useState([]);
   const [players, setPlayers] = useState([]);
   const [awards, setAwards] = useState([]);
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('success');
   useEffect(() => {
     setStatus('pending');
     getTeams()

@@ -10,7 +10,7 @@ import styles from './AdminPlayerPage.module.scss';
 
 export const AdminPlayerPage = () => {
     const [player, setPlayer] = useState({});
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState('success');
     const [searchParams] = useSearchParams();
     useEffect(() => {
         setStatus('pending');
