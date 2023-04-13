@@ -44,7 +44,7 @@ export const LoginForm = () => {
     })
   }
   return (
-    status === '' || status === 'error' ? <div className={styles.login}>
+    status === 'success' || status === 'error' ? <div className={styles.login}>
     <div className={styles.login__username}>
       <div className={styles.label}>Введите имя:</div>
       <input type="text" className={styles.input} onChange={text => setUsername(text.target.value)} />
