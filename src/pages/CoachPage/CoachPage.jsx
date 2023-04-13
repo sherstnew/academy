@@ -1,4 +1,3 @@
-import { ACADEMYCONFIG } from '../../academy.config';
 import { useEffect, useState } from 'react';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
@@ -6,23 +5,17 @@ import { CoachesList } from '../../components/CoachesList/CoachesList';
 import { Header } from '../../components/Header/Header';
 import { Footer } from '../../components/Footer/Footer';
 import styles from './CoachPage.module.scss';
+import { getCoaches } from '../../utils/getCoaches';
 
 export const CoachPage = () => {
-  const [status, setStatus] = useState('success');
+  const [status, setStatus] = useState('');
   const [coaches, setCoaches] = useState([]);
   useEffect(() => {
     setStatus('pending');
-    fetch(`${ACADEMYCONFIG.HOST}/api/coaches`, {
-      method: 'GET'
-    })
-    .then(data => data.json())
+    getCoaches()
     .then(res => {
-      if (res.status === 'ok') {
-        setCoaches(res.data);
-        setStatus('success');
-      } else {
-        setStatus('error');
-      }
+      setCoaches(res);
+      setStatus('success');
     })
     .catch(err => {
       setStatus('error');

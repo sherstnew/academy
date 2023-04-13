@@ -5,11 +5,12 @@ import { getPlayers } from '../../utils/getPlayers';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Loader } from '../../components/Loader/Loader';
+import { Error } from '../../components/Error/Error';
 import styles from './AdminPlayerPage.module.scss';
 
 export const AdminPlayerPage = () => {
     const [player, setPlayer] = useState({});
-    const [status, setStatus] = useState('start');
+    const [status, setStatus] = useState('');
     const [searchParams] = useSearchParams();
     useEffect(() => {
         setStatus('pending');
@@ -25,11 +26,19 @@ export const AdminPlayerPage = () => {
     return (
         <>
             <Header />
-            <div className={styles.container}>
-                {
-                    status === 'success' ? <AdminPlayer player={player} /> : <Loader />
-                }
-            </div>
+            {
+                status === 'success'
+                ?
+                <div className={styles.container}>
+                    <AdminPlayer player={player} />
+                </div>
+                :
+                status === 'error'
+                ?
+                <Error />
+                :
+                <Loader />
+            }
             <Footer />
         </>
     )

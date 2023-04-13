@@ -8,7 +8,7 @@ import { ACADEMYCONFIG } from '../../academy.config';
 export const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [status, setStatus] = useState('start');
+  const [status, setStatus] = useState('');
   useEffect(() => {
     if (parse(document.cookie).ACADEMY_TOKEN) {
       window.location.href = '/lk';
@@ -44,7 +44,7 @@ export const LoginForm = () => {
     })
   }
   return (
-    status === 'start' || status === 'error' ? <div className={styles.login}>
+    status === '' || status === 'error' ? <div className={styles.login}>
     <div className={styles.login__username}>
       <div className={styles.label}>Введите имя:</div>
       <input type="text" className={styles.input} onChange={text => setUsername(text.target.value)} />

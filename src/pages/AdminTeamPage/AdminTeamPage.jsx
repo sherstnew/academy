@@ -11,7 +11,7 @@ import { getPlayers } from '../../utils/getPlayers';
 
 export const AdminTeamPage = () => {
   const [team, setTeam] = useState({});
-  const [status, setStatus] = useState('start');
+  const [status, setStatus] = useState('');
   const [allPlayers, setAllPlayers] = useState([]);
   const [searchParams] = useSearchParams();
   useEffect(() => {
@@ -50,12 +50,17 @@ export const AdminTeamPage = () => {
   return (
     <>
       <Header />
-      <div className={styles.container}>
         {
-          status === 'success' ? <AdminTeam team={team} allPlayers={allPlayers} /> :
-          status === 'error' ? <Error /> : <Loader />
+          status === 'success'
+          ?
+          <div className={styles.container}>
+            <AdminTeam team={team} allPlayers={allPlayers} />
+          </div>
+          :
+          status === 'error' ? <Error />
+          :
+          <Loader />
         }
-      </div>
       <Footer />
     </>
   )

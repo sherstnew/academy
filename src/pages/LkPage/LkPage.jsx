@@ -11,7 +11,7 @@ import { Error } from '../../components/Error/Error';
 
 export const LkPage = () => {
   const [adminInfo, setAdminInfo] = useState({});
-  const [status, setStatus] = useState('start');
+  const [status, setStatus] = useState('');
   useEffect(() => {
     setStatus('pending');
     let tok = parse(document.cookie)['ACADEMY_TOKEN'];
@@ -51,12 +51,17 @@ export const LkPage = () => {
   return (
     <>
       <Header />
-      <div className={styles.container}>
       {
-        status === 'success' ? <AdminBlock admin={adminInfo} /> :
-        status === 'error' ? <Error errorText={'Произошла ошибка авторизации. Попробуйте войти заново.'} /> : <Loader />
+        status === 'success' ?
+        <div className={styles.container}>
+          <AdminBlock admin={adminInfo} />
+        </div>
+        :
+        status === 'error' ?
+        <Error errorText={'Произошла ошибка авторизации. Попробуйте войти заново.'} />
+        :
+        <Loader />
       }
-      </div>
       <Footer />
     </>
   )
