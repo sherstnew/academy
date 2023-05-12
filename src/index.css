@@ -1,13 +1,28 @@
+@font-face {
+  font-family: 'TT Norms Pro';
+  font-weight: 400;
+  src: url('./static/fonts/TTNormsPro-Regular.woff2');
+}
+
+@font-face {
+  font-family: 'TT Norms Pro';
+  font-weight: 500;
+  src: url('./static/fonts/TTNormsPro-Medium.woff2');
+}
+
 body {
   margin: 0;
-  font-family: 'Manrope', sans-serif;
+  font-family: 'TT Norms Pro', sans-serif;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  background-color: #ffffff;
+  color: #1f2122;
 }
 
 a {
-  color: #000000;
+  color: #1f2122;
   text-decoration: none;
 }
 

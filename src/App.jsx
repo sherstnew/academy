@@ -9,6 +9,7 @@ import { LkPage } from './pages/LkPage/LkPage';
 import { AdminTeamPage } from './pages/AdminTeamPage/AdminTeamPage';
 import { AdminPlayerPage } from './pages/AdminPlayerPage/AdminPlayerPage';
 import { CoachPage } from './pages/CoachPage/CoachPage';
+import { CampPage } from './pages/CampPage/CampPage';
 
 export const App = () => {
   return (
@@ -19,6 +20,7 @@ export const App = () => {
         <Route path='/team' element={<TeamPage />} />
         <Route path='/awards' element={<AwardsPage />} />
         <Route path='/coaches' element={<CoachPage />} />
+        <Route path='/camp' element={<CampPage />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/lk' element={<LkPage />} />
         <Route path='/lk/team' element={<AdminTeamPage />} />

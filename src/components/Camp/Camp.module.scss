@@ -1,0 +1,346 @@
+@keyframes showHeader {
+  0% {
+    transform: translate(0px, -500px);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(0px, -250px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes showElement {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes cursor {
+  0% {
+    border-color: white;
+  }
+
+  50% {
+    border-color: transparent;
+  }
+
+  100% {
+    border-color: white;
+  }
+}
+
+$black-gradient: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, .8));
+$white-gradient: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+
+.camp {
+  width: 100%;
+  font-family: 'TT Norms Pro', sans-serif;
+}
+
+.landing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), url('../../static/images/camp/landing.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: showElement 2s 1;
+  @media screen and (max-width: 500px) {
+    background-image: linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), url('../../static/images/camp/campall.png');
+    align-content: flex-start;
+    background-size: cover;
+  }
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  font-size: 128px;
+  font-weight: 500;
+  animation: showHeader 1s 1;
+  text-shadow: #ffffff 0px 0px 50px;
+  @media screen and (max-width: 500px) {
+    margin-top: 300px;
+    font-size: 50px;
+  }
+}
+
+.subheader {
+  width: 100%;
+  font-size: 22px;
+  margin-top: 20px;
+  text-align: center;
+  animation: showElement 1s 1s 1 forwards;
+  opacity: 0;
+  text-shadow: #ffffff 0px 0px 60px;
+}
+
+.reasons {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+  min-height: 150vh;
+  background-image: $white-gradient, url('../../static/images/camp/bgs/reasbg.svg');
+  background-attachment: fixed;
+  // background-repeat: no-repeat;
+  background-position: center;
+  @media screen and (max-width: 500px) {
+    background-image: url('../../static/images/camp/bgs/camptext.png');
+    background-size: contain;
+    background-repeat: repeat-y;
+  }
+}
+
+.reason {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: center;
+  padding: 30px;
+  min-width: 400px;
+  min-height: 300px;
+  background-size: cover;
+  border-radius: 15px;
+  gap: 20px;
+  color: #ffffff;
+  &:nth-child(1) {
+    background-image: $black-gradient, url('../../static/images/camp/campcard1.jpg');
+  }
+  &:nth-child(2) {
+    background-image: $black-gradient, url('../../static/images/camp/campcard2.jpg');
+  }
+  &:nth-child(3) {
+    background-image: $black-gradient, url('../../static/images/camp/campcard3.jpg');
+  }
+  @media screen and (max-width: 500px) {
+    min-width: 0px;
+    width: 70%;
+    min-height: 200px;
+  }
+}
+
+.reason__title {
+  width: 100%;
+  font-size: 96px;
+  font-weight: 500;
+  @media screen and (max-width: 500px) {
+    font-size: 64px;
+  }
+}
+
+.reason__description {
+  width: 100%;
+  font-size: 22px;
+  @media screen and (max-width: 500px) {
+    font-size: 20px;
+  }
+}
+
+.terms {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  padding: 40px;
+  background-image: url('../../static/images/camp/bgs/termsbg.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-shadow: #ffffff 1px 1px 0px;
+  @media screen and (max-width: 500px) {
+    background-image: none;
+    padding: 0px;
+  }
+}
+
+.terms__header {
+  margin-top: 100px;
+  width: 100%;
+  text-align: center;
+  font-size: 64px;
+  font-weight: 500;
+  @media screen and (max-width: 500px) {
+    width: 80%;
+    font-size: 32px;
+  }
+}
+
+.terms__item {
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  margin-top: 30px;
+  @media screen and (max-width: 500px) {
+    width: 80%;
+    font-size: 20px;
+  }
+}
+
+.groups {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  padding: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  @media screen and (max-width: 500px) {
+    background-position: bottom;
+    min-height: 70vh;
+  }
+}
+
+.groups_medium {
+  background-image: $white-gradient, url('../../static/images/camp/medium.svg');
+  @media screen and (max-width: 500px) {
+    background-image: $white-gradient, url('../../static/images/camp/mediummobile.png');
+  }
+}
+
+.groups_hard {
+  background-image: $white-gradient, url('../../static/images/camp/hard.svg');
+  @media screen and (max-width: 500px) {
+    background-image: $white-gradient, url('../../static/images/camp/hardmobile.png');
+  }
+}
+
+.groups__menu {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  min-height: 50px;
+}
+
+.menu__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  min-height: 50px;
+  color: #1f2122;
+  background-color: #ffffff;
+  outline: inset 1px #1f2122;
+  border-radius: 15px;
+  transition: 0.2s;
+  cursor: pointer;
+  &:hover {
+    transition: 0.2s;
+    background-color: #1f2122;
+    color: #ffffff;
+  }
+  @media screen and (max-width: 500px) {
+    width: 40%;
+  }
+}
+
+.menu__btn_active {
+  background-color: #1f2122;
+  color: #ffffff;
+}
+
+.group {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 70vh;
+  @media screen and (max-width: 500px) {
+    padding-top: 100px;
+  }
+}
+
+.group__info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 20%;
+  @media screen and (max-width: 500px) {
+    width: 100%;
+  }
+}
+
+.group__item {
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  margin-top: 20px;
+  @media screen and (max-width: 500px) {
+    font-size: 18px;
+  }
+}
+
+.group__header {
+  font-size: 64px;
+  font-weight: 500;
+  @media screen and (max-width: 500px) {
+    font-size: 32px;
+  }
+}
+
+.join {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+  min-height: 100vh;
+  padding: 40px;
+  background-image: url('../../static/images/camp/bgs/join.png');
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+.join__header {
+  width: 100%;
+  text-align: center;
+  font-size: 60px;
+  font-weight: 500;
+  @media screen and (max-width: 500px) {
+    font-size: 32px;
+  }
+}
+
+.social {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.social__icon {
+  width: 40px;
+  height: 40px;
+}
+
+.presentation {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+  @media screen and (max-width: 500px) {
+    font-size: 18px;
+  }
+}
