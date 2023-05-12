@@ -52,12 +52,12 @@ $white-gradient: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1))
   flex-wrap: wrap;
   width: 100%;
   min-height: 100vh;
-  background-image: linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), url('../../static/images/camp/landing.png');
+  background-image: linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), url('../../static/images/camp/landing.webp');
   background-position: center;
   background-repeat: no-repeat;
   animation: showElement 2s 1;
   @media screen and (max-width: 500px) {
-    background-image: linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), url('../../static/images/camp/campall.png');
+    background-image: linear-gradient(rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), url('../../static/images/camp/campall.webp');
     align-content: flex-start;
     background-size: cover;
   }
@@ -96,10 +96,10 @@ $white-gradient: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1))
   min-height: 150vh;
   background-image: $white-gradient, url('../../static/images/camp/bgs/reasbg.svg');
   background-attachment: fixed;
-  // background-repeat: no-repeat;
   background-position: center;
+  background-size: 500px;
   @media screen and (max-width: 500px) {
-    background-image: url('../../static/images/camp/bgs/camptext.png');
+    background-image: url('../../static/images/camp/bgs/camptext.webp');
     background-size: contain;
     background-repeat: repeat-y;
   }
@@ -119,13 +119,13 @@ $white-gradient: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1))
   gap: 20px;
   color: #ffffff;
   &:nth-child(1) {
-    background-image: $black-gradient, url('../../static/images/camp/campcard1.jpg');
+    background-image: $black-gradient, url('../../static/images/camp/campcard1.webp');
   }
   &:nth-child(2) {
-    background-image: $black-gradient, url('../../static/images/camp/campcard2.jpg');
+    background-image: $black-gradient, url('../../static/images/camp/campcard2.webp');
   }
   &:nth-child(3) {
-    background-image: $black-gradient, url('../../static/images/camp/campcard3.jpg');
+    background-image: $black-gradient, url('../../static/images/camp/campcard3.webp');
   }
   @media screen and (max-width: 500px) {
     min-width: 0px;
@@ -158,7 +158,7 @@ $white-gradient: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1))
   flex-wrap: wrap;
   min-height: 100vh;
   padding: 40px;
-  background-image: url('../../static/images/camp/bgs/termsbg.svg');
+  background-image: url('../../static/images/camp/bgs/termsbg.webp');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -211,14 +211,14 @@ $white-gradient: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1))
 .groups_medium {
   background-image: $white-gradient, url('../../static/images/camp/medium.svg');
   @media screen and (max-width: 500px) {
-    background-image: $white-gradient, url('../../static/images/camp/mediummobile.png');
+    background-image: $white-gradient, url('../../static/images/camp/mediummobile.webp');
   }
 }
 
 .groups_hard {
   background-image: $white-gradient, url('../../static/images/camp/hard.svg');
   @media screen and (max-width: 500px) {
-    background-image: $white-gradient, url('../../static/images/camp/hardmobile.png');
+    background-image: $white-gradient, url('../../static/images/camp/hardmobile.webp');
   }
 }
 
@@ -308,7 +308,7 @@ $white-gradient: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1))
   gap: 30px;
   min-height: 100vh;
   padding: 40px;
-  background-image: url('../../static/images/camp/bgs/join.png');
+  background-image: url('../../static/images/camp/bgs/join.webp');
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
