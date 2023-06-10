@@ -1,6 +1,7 @@
 import { ACADEMYCONFIG } from '../academy.config';
 
 export function getAwards(id) {
+  let counter = 0;
   return new Promise((resolve, reject) => {
     fetch(`${ACADEMYCONFIG.HOST}/api/awards${id ? `?id=${id}` : ''}`, {
         method: 'GET',
@@ -18,7 +19,12 @@ export function getAwards(id) {
       }
     })
     .catch(err => {
-      reject('error');
+      if (counter < 6) {
+        counter++;
+        getAwards(id);
+      } else {
+        reject('error');
+      }
     })
   })
 }

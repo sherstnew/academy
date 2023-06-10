@@ -1,6 +1,7 @@
 import { ACADEMYCONFIG } from '../academy.config';
 
 export function getCoaches() {
+  let counter = 0;
   return new Promise((resolve, reject) => {
     fetch(`${ACADEMYCONFIG.HOST}/api/coaches`, {
         method: 'GET',
@@ -18,7 +19,12 @@ export function getCoaches() {
       }
     })
     .catch(err => {
-      reject('error');
+      if (counter < 6) {
+        counter++;
+        getCoaches();
+      } else {
+        reject('error');
+      }
     })
   })
 }
