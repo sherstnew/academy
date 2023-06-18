@@ -5,10 +5,8 @@ import { getTeams } from '../../utils/getTeams';
 import { calcAge } from '../../utils/calcAge';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
-
-import { Header } from '../../components/Header/Header';
 import { TeamBlock } from '../../components/TeamBlock/TeamBlock';
-import { Footer } from '../../components/Footer/Footer';
+import { Layout } from '../../components/Layout/Layout';
 
 export const TeamPage = () => {
   const [team, setTeam] = useState([]);
@@ -29,21 +27,20 @@ export const TeamPage = () => {
     .catch(err => {
       setStatus('error');
     })
-  }, [searchParams])
+  }, [searchParams]);
+
   return (
-    <>
-      <Header />
-        {
-          status === 'success' ?
-          <div className={styles.container}>
-            <TeamBlock team={team} />
-          </div>
-          :
-          status === 'error' ? <Error />
-          :
-          <Loader />
-        }
-      <Footer />
-    </>
-  )
-}
+    <Layout>
+      {
+        status === 'success' ?
+        <div className={styles.container}>
+          <TeamBlock team={team} />
+        </div>
+        :
+        status === 'error' ? <Error />
+        :
+        <Loader />
+      }
+    </Layout>
+  );
+};

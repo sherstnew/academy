@@ -1,17 +1,14 @@
-import { Header } from '../../components/Header/Header';
-import { Footer } from '../../components/Footer/Footer';
+import { Layout } from '../../components/Layout/Layout';
 import { LoginForm } from '../../components/LoginForm/LoginForm';
 
 import styles from './LoginPage.module.scss';
 
 export const LoginPage= () => {
   return (
-    <>
-      <Header />
+    <Layout>
       <div className={styles.container}>
         <LoginForm />
       </div>
-      <Footer />
-    </>
+    </Layout>
   )
 }

@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import styles from './AwardsPage.module.scss';
-import { Header } from '../../components/Header/Header';
-import { Footer } from '../../components/Footer/Footer';
 import { Error } from '../../components/Error/Error';
 import { Loader } from '../../components/Loader/Loader';
 import { AwardsBlock } from '../../components/AwardsBlock/AwardsBlock';
 import { getAwards } from '../../utils/getAwards';
+import { Layout } from '../../components/Layout/Layout';
 
 export const AwardsPage = () => {
   const [awards, setAwards] = useState([]);
@@ -22,8 +21,7 @@ export const AwardsPage = () => {
     })
   }, [])
   return (
-    <>
-    <Header />
+    <Layout>
       {
         status === 'success' ?
         <div className={styles.container}>
@@ -33,7 +31,6 @@ export const AwardsPage = () => {
         status === 'error' ? <Error />
         : <Loader />
       }
-    <Footer />
-    </>
+    </Layout>
   )
 }

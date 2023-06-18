@@ -18,10 +18,26 @@
   }
   @media screen and (max-width: 500px) {
     font-size: 16px;
+    gap: 150px;
+    justify-content: center;
   }
 }
 
 .logo {
   width: 55px;
   height: 52px;
+}
+
+.menu__opener {
+  width: 50px;
+  height: 50px;
+  @media screen and (min-width: 500px) {
+    display: none;
+  }
+}
+
+.header__item {
+  @media screen and (max-width: 500px) {
+    display: none;
+  }
 }

@@ -1,16 +1,13 @@
-import { Header } from '../../components/Header/Header';
 import { Camp } from '../../components/Camp/Camp';
-import { Footer } from '../../components/Footer/Footer';
 import styles from './CampPage.module.scss';
+import { Layout } from '../../components/Layout/Layout';
 
 export const CampPage = () => {
   return (
-    <>
-      <Header />
+    <Layout>
       <div className={styles.container}>
         <Camp />
       </div>
-      <Footer />
-    </>
+    </Layout>
    );
 }

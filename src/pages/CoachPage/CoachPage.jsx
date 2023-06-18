@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
 import { CoachesList } from '../../components/CoachesList/CoachesList';
-import { Header } from '../../components/Header/Header';
-import { Footer } from '../../components/Footer/Footer';
 import styles from './CoachPage.module.scss';
 import { getCoaches } from '../../utils/getCoaches';
+import { Layout } from '../../components/Layout/Layout';
 
 export const CoachPage = () => {
   const [status, setStatus] = useState('success');
@@ -22,8 +21,7 @@ export const CoachPage = () => {
     })
   }, [])
   return (
-    <>
-      <Header />
+    <Layout>
       {
         status === 'success' ?
         <div className={styles.container}>
@@ -34,7 +32,6 @@ export const CoachPage = () => {
         :
         <Loader />
       }
-      <Footer />
-    </>
+    </Layout>
   )
 }

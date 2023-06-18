@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Header } from '../../components/Header/Header';
-import { Footer } from '../../components/Footer/Footer';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
 import { AdminTeam } from '../../components/AdminTeam/AdminTeam';
 import styles from './AdminTeamPage.module.scss';
 import { getTeams } from '../../utils/getTeams';
 import { getPlayers } from '../../utils/getPlayers';
+import { Layout } from '../../components/Layout/Layout';
 
 export const AdminTeamPage = () => {
   const [team, setTeam] = useState({});
@@ -38,8 +37,7 @@ export const AdminTeamPage = () => {
     })
   }, [searchParams]);
   return (
-    <>
-      <Header />
+    <Layout>
         {
           status === 'success'
           ?
@@ -51,7 +49,6 @@ export const AdminTeamPage = () => {
           :
           <Loader />
         }
-      <Footer />
-    </>
+    </Layout>
   )
 }

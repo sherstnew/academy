@@ -1,0 +1,33 @@
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.menu {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100vw;
+  height: 100vh;
+  padding-left: 30px;
+  animation: show .5s 1 forwards;
+}
+
+.menu__links {
+  display: flex;
+  flex-wrap: wrap;
+  width: 40%;
+  margin-bottom: 80px;
+}
+
+.links__item {
+  font-size: 25px;
+  margin-top: 10px;
+  &:hover {
+    text-decoration: underline;
+  }
+}

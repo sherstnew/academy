@@ -10,22 +10,29 @@ import { AdminTeamPage } from './pages/AdminTeamPage/AdminTeamPage';
 import { AdminPlayerPage } from './pages/AdminPlayerPage/AdminPlayerPage';
 import { CoachPage } from './pages/CoachPage/CoachPage';
 import { CampPage } from './pages/CampPage/CampPage';
+import { useState } from 'react';
+import { MenuContext } from './contexts/MenuContext';
 
 export const App = () => {
+
+  const [menuOpened, setMenuOpened] = useState(false);
+
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/teams' element={<TeamsPage />} />
-        <Route path='/team' element={<TeamPage />} />
-        <Route path='/awards' element={<AwardsPage />} />
-        <Route path='/coaches' element={<CoachPage />} />
-        <Route path='/camp' element={<CampPage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/lk' element={<LkPage />} />
-        <Route path='/lk/team' element={<AdminTeamPage />} />
-        <Route path='/lk/player' element={<AdminPlayerPage />} />
-      </Routes>
-    </BrowserRouter>
+    <MenuContext.Provider value={{menuOpened: menuOpened, setMenuOpened: setMenuOpened}}>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/teams' element={<TeamsPage />} />
+          <Route path='/team' element={<TeamPage />} />
+          <Route path='/awards' element={<AwardsPage />} />
+          <Route path='/coaches' element={<CoachPage />} />
+          <Route path='/camp' element={<CampPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/lk' element={<LkPage />} />
+          <Route path='/lk/team' element={<AdminTeamPage />} />
+          <Route path='/lk/player' element={<AdminPlayerPage />} />
+        </Routes>
+      </BrowserRouter>
+    </MenuContext.Provider>
   );
 }

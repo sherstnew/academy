@@ -1,11 +1,10 @@
 import styles from './TeamsPage.module.scss';
-import { Header } from '../../components/Header/Header';
 import { TeamsList } from '../../components/TeamsList/TeamsList';
-import { Footer } from '../../components/Footer/Footer';
 import { useEffect, useState } from 'react';
 import { Loader } from '../../components/Loader/Loader';
 import { Error } from '../../components/Error/Error';
 import { getTeams } from '../../utils/getTeams';
+import { Layout } from '../../components/Layout/Layout';
 
 export const TeamsPage = () => {
   const [teams, setTeams] = useState([]);
@@ -22,8 +21,7 @@ export const TeamsPage = () => {
     })
   }, [])
   return (
-    <>
-    <Header />
+    <Layout>
       {
         status === 'success' ?
         <div className={styles.container}>
@@ -35,7 +33,6 @@ export const TeamsPage = () => {
         :
         <Loader />
       }
-    <Footer />
-    </>
+    </Layout>
   )
 }

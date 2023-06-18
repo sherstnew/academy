@@ -1,5 +1,4 @@
-import { Header } from '../../components/Header/Header';
-import { Footer } from '../../components/Footer/Footer';
+import { Layout } from '../../components/Layout/Layout';
 import { SloganBlock } from '../../components/SloganBlock/SloganBlock';
 import { AboutBlock } from '../../components/AboutBlock/AboutBlock';
 import { MapBlock } from '../../components/MapBlock/MapBlock';
@@ -10,8 +9,7 @@ import arrow_down from '../../static/icons/arrow_down.svg';
 
 export const HomePage = () => {
   return (
-    <>
-      <Header />
+    <Layout>
       <div className={styles.container}>
         <Link className={styles.scrollBlock} to='aboutBlock' smooth={true} duration={1000}>
           <img src={arrow_down} alt="стрелка вниз" className={styles.scrollBtn} />
@@ -29,7 +27,6 @@ export const HomePage = () => {
           <GroupsBlock />
         </Element>
       </div>
-      <Footer />
-    </>
+    </Layout>
   )
 }
