@@ -1,5 +1,6 @@
 import styles from './AboutBlock.module.scss';
 import team from '../../static/images/team.webp';
+import team2 from '../../static/images/team2.webp';
 import { ACADEMYCONFIG } from '../../academy.config';
 
 import { UIButton } from '../UIButton/UIButton';
@@ -7,7 +8,7 @@ import { UIButton } from '../UIButton/UIButton';
 export const AboutBlock = () => {
   return (
     <div className={styles.aboutBlock}>
-      <img src={team} alt="команда" className={styles.teamPhoto} />
+      <img src={team2} alt="команда" className={styles.teamPhoto} />
       <div className={styles.about}>
         <div className={styles.about__title}>Кто мы?</div>
         <div className={styles.about__text}>
