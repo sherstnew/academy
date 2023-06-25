@@ -8,11 +8,18 @@ const NewsCard = ({news}) => {
 
   return (
     <div className={styles.card}>
-      <header className={styles.card__header}>
-        {
-          news[currentIndex].header
-        }
-      </header>
+      <div className={styles.card__text}>
+        <header className={styles.card__header}>
+          {
+            news[currentIndex].header
+          }
+        </header>
+        <div className={styles.card__description}>
+          {
+            news[currentIndex].text.split('\n').map(str => <div className={styles.description__string} key={str}>{ str }</div>)
+          }
+        </div>
+      </div>
       <img src={news[currentIndex].image} alt="" className={styles.card__image} />
       <div className={styles.switcher}>
         <div className={styles.arrow} onClick={() => currentIndex === 0 ? setCurrentIndex(news.length - 1) : setCurrentIndex(currentIndex - 1)}>

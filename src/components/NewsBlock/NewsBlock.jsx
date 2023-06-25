@@ -15,7 +15,7 @@ const NewsBlock = () => {
     setStatus('loading');
     getNews()
     .then(newsData => {
-      if (newsData) {
+      if (newsData.length !== 0) {
         setNews(newsData);
         setStatus('success');
       } else {
