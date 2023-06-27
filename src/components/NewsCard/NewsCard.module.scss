@@ -5,7 +5,7 @@
   align-content: center;
   flex-wrap: wrap;
   width: 100%;
-  height: 100%;
+  height: 50%;
   padding: 0px 10%;
   @media screen and (max-width: 500px) {
     justify-content: center;
@@ -19,17 +19,17 @@
 .card__header {
   text-align: left;
   width: 100%;
-  height: 20%;
   font-size: 40px;
   font-weight: 500;
   @media screen and (max-width: 500px) {
+    text-align: center;
     font-size: 30px;
     padding: 10px;
   }
 }
 
 .card__image {
-  max-height: 400px;
+  height: 400px;
   object-fit: cover;
   margin-top: 50px;
   border-radius: 15px;
@@ -38,42 +38,14 @@
   }
 }
 
-.switcher {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-  width: 100%;
-  height: 50px;
-  position: relative;
-  bottom: -20%;
-}
-
-.arrow {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 50px;
-  height: 50px;
-  background: #ffffff;
-  cursor: pointer;
-}
-
-.arrow__left, .arrow__right {
-  width: 30px;
-  height: 30px;
-}
-
-.arrow__left {
-  transform: rotate(-90deg);
-}
-
-.arrow__right {
-  transform: rotate(90deg);
-}
-
 .card__text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
   width: 50%;
+  height: 100%;
   @media screen and (max-width: 500px) {
     text-align: center;
     width: 100%;
@@ -84,6 +56,10 @@
 .card__description {
   margin-top: 20px;
   width: 100%;
+  -webkit-line-clamp: 10; /* Число отображаемых строк */
+  display: -webkit-box; /* Включаем флексбоксы */
+  -webkit-box-orient: vertical; /* Вертикальная ориентация */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
   font-size: 18px;
   @media screen and (max-width: 500px) {
     width: auto;
