@@ -14,6 +14,7 @@ export const Menu = () => {
         <Link to='/teams' className={styles.links__item} onClick={() => setMenuOpened(false)}>Команды</Link>
         <Link to='/awards' className={styles.links__item} onClick={() => setMenuOpened(false)}>Награды</Link>
         <Link to='/coaches' className={styles.links__item} onClick={() => setMenuOpened(false)}>Тренеры</Link>
+        <Link to='/camp' className={styles.links__item} onClick={() => setMenuOpened(false)}>Кэмп</Link>
       </div>
     </div>
   );

@@ -16,6 +16,7 @@ export const Header = () => {
       <Link to='/teams' className={styles.header__item}>Команды</Link>
       <Link to='/awards' className={styles.header__item}>Награды</Link>
       <Link to='/coaches' className={styles.header__item}>Тренеры</Link>
+      <Link to='/camp' className={styles.header__item}>Кэмп</Link>
       {
         menuOpened
         ?
