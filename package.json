@@ -25,7 +25,6 @@
   "scripts": {
     "start": "npm install && npx react-scripts start",
     "build": "npm install && npx react-scripts build",
-    "server": "npm install && npx nodemon ./server/index.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
