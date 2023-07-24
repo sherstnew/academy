@@ -33,7 +33,7 @@ const NewsBlock = () => {
     status === 'success'
     ?
     <div className={styles.newsBlock}>
-      <NewsCard newsItem={news[currentIndex]} />
+      <NewsCard newsItem={news[currentIndex] || {}} />
       <div className={styles.switcher}>
         <div className={styles.arrow} onClick={() => currentIndex === 0 ? setCurrentIndex(news.length - 1) : setCurrentIndex(currentIndex - 1)}>
           <img src={arrow} alt="" className={styles.arrow__left} />
@@ -49,6 +49,25 @@ const NewsBlock = () => {
     <Error />
     :
     <Loader />
+    // status === 'success'
+    // ?
+    // <div className={styles.newsBlock}>
+    //   <NewsCard newsItem={news[currentIndex]} />
+    //   <div className={styles.switcher}>
+    //     <div className={styles.arrow} onClick={() => currentIndex === 0 ? setCurrentIndex(news.length - 1) : setCurrentIndex(currentIndex - 1)}>
+    //       <img src={arrow} alt="" className={styles.arrow__left} />
+    //     </div>
+    //     <div className={styles.arrow} onClick={() => currentIndex === news.length - 1 ? setCurrentIndex(0) : setCurrentIndex(currentIndex + 1)}>
+    //       <img src={arrow} alt="" className={styles.arrow__right}/>
+    //     </div>
+    //   </div>
+    // </div>
+    // :
+    // status === 'error'
+    // ?
+    // <Error />
+    // :
+    // <Loader />
    );
 };
 
