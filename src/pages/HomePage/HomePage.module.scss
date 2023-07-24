@@ -16,9 +16,6 @@
   align-items: center;
   flex-wrap: wrap;
   width: 100vw;
-  @media screen and (max-width: 500px) {
-    gap: 50px;
-  }
 }
 
 .scrollBlock {
