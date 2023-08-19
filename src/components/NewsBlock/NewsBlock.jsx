@@ -19,7 +19,7 @@ const NewsBlock = () => {
           setNews(newsData);
           setStatus('success');
         } else {
-          setStatus('error');
+          setStatus('noposts');
         }
       })
       .catch((err) => {
@@ -29,6 +29,8 @@ const NewsBlock = () => {
 
   return status === 'error' ? (
     <Error />
+  ) : status === 'noposts' ? (
+    ''
   ) : (
     <div className={styles.newsBlock}>
       <NewsCard newsItem={news[currentIndex] || {}} />

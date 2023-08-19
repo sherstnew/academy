@@ -12,7 +12,7 @@ export const HomePage = () => {
   return (
     <Layout>
       <div className={styles.container}>
-        <Link className={styles.scrollBlock} to='newsBlock' smooth={true} duration={1000}>
+        <Link className={styles.scrollBlock} to='aboutBlock' smooth={true} duration={1000}>
           <img src={arrow_down} alt="стрелка вниз" className={styles.scrollBtn} />
         </Link>
         <Element name='sloganBlock'>
