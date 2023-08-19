@@ -44,15 +44,16 @@
   animation: background-loading 3s infinite alternate;
 }
 
-.card__image {
-  min-width: 30%;
+.card__content {
+  // min-width: 30%;
   height: 400px;
   object-fit: cover;
-  outline: 15px #e9e9e9 solid;
+  outline: 5px #e9e9e9 solid;
   border-radius: 15px;
   border: none;
+  object-position: top;
   @media screen and (max-width: 500px) {
-    max-width: 100%;
+    max-width: 90%;
     max-height: 400px;
     margin: 20px;
   }

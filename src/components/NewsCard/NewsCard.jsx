@@ -12,30 +12,34 @@ const NewsCard = ({ newsItem }) => {
           className={cx('card__header', {
             card__header_empty: newsItem._id === undefined,
           })}
-        >
-          {newsItem.header || ''}
-        </header>
-        <div className={styles.card__description}>
-          {newsItem._id ? (
-            newsItem.text.split('\n').map((str) => (
-              <div className={styles.description__string} key={Math.random()}>
-                {str}
-              </div>
-            ))
-          ) : (
-            <div className={styles.description__string_empty} />
-          )}
-        </div>
+          dangerouslySetInnerHTML={{ __html: newsItem.header || '' }}
+        ></header>
+        {newsItem._id ? (
+          <div
+            className={styles.card__description}
+            dangerouslySetInnerHTML={{ __html: newsItem.text || '' }}
+          ></div>
+        ) : (
+          <div className={styles.description__string_empty} />
+        )}
       </div>
-      <img
-        src={newsItem.image || notFoundImage}
-        onError={({ currentTarget }) => {
-          currentTarget.onerror = null;
-          currentTarget.src = notFoundImage;
-        }}
-        alt=''
-        className={styles.card__image}
-      />
+      {newsItem.contentType === 'image' ? (
+        <img
+          src={newsItem.content || notFoundImage}
+          onError={({ currentTarget }) => {
+            currentTarget.onerror = null;
+            currentTarget.src = notFoundImage;
+          }}
+          alt=''
+          className={styles.card__content}
+        />
+      ) : newsItem.contentType === 'video' ? (
+        <video className={styles.card__content} controls="controls">
+          <source src={newsItem.content} />
+        </video>
+      ) : (
+        ''
+      )}
     </div>
   );
 };
