@@ -61,7 +61,7 @@ export const Camp = () => {
           <a href={ACADEMYCONFIG.INST.link} target="_blank" rel="noopener noreferrer"><img src={ACADEMYCONFIG.INST.icon} alt="instagram" className={styles.social__icon} /></a>
           <a href={ACADEMYCONFIG.TG.link} target="_blank" rel="noopener noreferrer"><img src={ACADEMYCONFIG.TG.icon} alt="instagram" className={styles.social__icon} /></a>
           </div>
-          <div className={styles.presentation}>Полная презентация: <a href="https://disk.yandex.ru/i/uc-OyjKDdrDt0w" target="_blank" rel="noreferrer">https://disk.yandex.ru/i/uc-OyjKDdrDt0w</a></div>
+          <div className={styles.presentation}><a href="https://disk.yandex.ru/i/uc-OyjKDdrDt0w" target="_blank" rel="noreferrer">Полная презентация</a></div>
         </div>
       </div>
     </div>
