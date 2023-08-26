@@ -3,7 +3,8 @@ import telegram from './static/icons/telegram.png';
 import vk from './static/icons/vk.png';
 
 export const ACADEMYCONFIG = {
-  HOST: process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : ' https://academy-server.cyclic.app',
+  HOST: process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'https://academy-server.cyclic.app',
+  // HOST: 'https://academy-server.cyclic.app',
   CONTACT: 'https://t.me/Mr_Palex',
   INST: {
     link: 'https://www.instagram.com/academy_pfv',
