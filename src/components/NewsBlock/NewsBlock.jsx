@@ -31,7 +31,7 @@ const NewsBlock = () => {
     <Error />
   ) : status === 'noposts' ? (
     ''
-  ) : (
+  ) : status === 'success' ? (
     <div className={styles.newsBlock}>
       <NewsCard newsItem={news[currentIndex] || {}} />
       <div className={styles.switcher}>
@@ -57,6 +57,8 @@ const NewsBlock = () => {
         </div>
       </div>
     </div>
+  ) : (
+    ''
   );
   // status === 'success'
   // ?
